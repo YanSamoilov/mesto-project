@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="page">
+  <header class="header page__section">
+    <a href="#" class="header__logo">
+      <img src="./images/logo-img.png" alt="Логотип Место" class="header__logo-image">
+    </a>
+  </header>
+  <main>
+    <section class="profile page__section">
+      <img src="./images/Avatar.png" alt="Аватар пользователя в круглой рамке" class="profile__avatar">
+      <div class="profile__user">
+        <div class="profile__user-wrapper">
+          <h1 class="profile__user-name">Жак-Ив Кусто</h1>
+          <button type="submit" class="profile__user-edit"></button>
+        </div>
+        <p class="profile__user-action">Исследователь океана</p>
+      </div>
+      <div class="profile__add">
+        <button type="submit" class="profile__add-card"></button>
+      </div>
+    </section>
+    <section class="cards page__section">
+      <ul class="cards__list">
+        <li class="cards__list-elem">
+          <img src="./images/bigBlue.jpg" alt="Большая голубая дыра, вид из самолета" class="cards__image">
+          <div class="cards__wrapper">
+            <h2 class="cards__title">Большая голубая дыра</h2>
+            <button type="submit" class="cards__like cards__like_active">
+            </button>
+          </div>
+        </li>
+        <li class="cards__list-elem">
+          <img src="./images/elbrus.png" alt="Гора Эльбрус" class="cards__image">
+          <div class="cards__wrapper">
+            <h2 class="cards__title">Гора Эльбрус</h2>
+            <button type="submit" class="cards__like">
+          </div>
+        </li>
+        <li class="cards__list-elem">
+          <img src="./images/dombai.png" alt="Карачаевск" class="cards__image">
+          <div class="cards__wrapper">
+            <h2 class="cards__title">Домбай</h2>
+            <button type="submit" class="cards__like">
+          </div>
+        </li>
+        <li class="cards__list-elem">
+          <img src="./images/amazonka.jpg" alt="Амазонка, вид из самолета" class="cards__image">
+          <div class="cards__wrapper">
+            <h2 class="cards__title">Амазонка</h2>
+            <button type="submit" class="cards__like">
+          </div>
+        </li>
+        <li class="cards__list-elem">
+          <img src="./images/Great-Barrier-Reef.jpg" alt="Большой барьерный риф, вид из самолета." class="cards__image">
+          <div class="cards__wrapper">
+            <h2 class="cards__title">Большой барьерный риф</h2>
+            <button type="submit" class="cards__like">
+          </div>
+        </li>
+        <li class="cards__list-elem">
+          <img src="./images/karachaevsk.png" alt="Карачаевск" class="cards__image">
+          <div class="cards__wrapper">
+            <h2 class="cards__title">Карачаево-Черкесск</h2>
+            <button type="submit" class="cards__like">
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="user-edit">
+      <div class="user-edit__main-container">
+        <button type="submit" class="user-edit__close"></button>
+        <h2 class="user-edit__title">Редактировать профиль</h2>
+        <fieldset class="user-edit__edit-container">
+          <input type="text" class="user-edit__form">
+          <input type="text" class="user-edit__form">
+        </fieldset>
+        <button type="submit" class="user-edit__button-save">Сохранить</button>
+      </div>
+    </section>
+  </main>
+  <footer class="footer page__section">
+    <p class="footer__author">&copy;2021.Самойлов Ян</p>
+  </footer>
+  <script src="./pages/index.js"></script>
+</body>
+</html>

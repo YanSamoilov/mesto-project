@@ -1,0 +1,6 @@
+.cards__list-elem {
+  max-width: 282px;
+  object-fit: cover;
+  border-radius: 10px;
+  overflow: hidden;
+}

@@ -1,0 +1,13 @@
+.profile__user-action {
+  margin: 0;
+  max-width: 544px;
+  font-size: 18px;
+  line-height: 1.22;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 640px) {
+  .profile__user-action {
+    text-align: center;
+  }
+}
