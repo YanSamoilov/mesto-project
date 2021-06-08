@@ -1,5 +1,4 @@
-![](./images/logo.svg)
-
+![](./images/Vector.svg)
 # Учебный проект "Место"
 
 ## Описание
@@ -8,4 +7,4 @@
 В дальнейшем проект будет дополнятся технологиями по мере прохождения учебной программы.
 
 ## Ссылка на GitHub Pages
-[Ссылка на GitHub Pages]()
+[Ссылка на GitHub Pages](https://yansamoilov.github.io/mesto-project/index.html)
