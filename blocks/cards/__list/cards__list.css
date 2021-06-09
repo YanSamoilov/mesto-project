@@ -9,6 +9,13 @@
   justify-items: center;
 }
 
+@media screen and (max-width: 900px) {
+  .cards__list {
+    max-width: 581px;
+    margin: auto;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .cards__list {
     width: 282px;
