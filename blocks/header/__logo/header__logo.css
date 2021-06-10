@@ -1,5 +1,9 @@
 .header__logo {
   transition: opacity .3s linear;
+  background-image: url(../../../images/logo.svg);
+  width: 142px;
+  height: 33px;
+  display: inline-block;
 }
 
 .header__logo:hover {
@@ -8,7 +12,9 @@
 
 @media screen and (max-width: 640px) {
   .header__logo {
-    padding-left: 27px;
-    box-sizing: border-box;
+    background-image: url(../../../images/logoMobile.svg);
+    margin-left: 27px;
+    width: 104px;
+    height: 24px;
   }
 }

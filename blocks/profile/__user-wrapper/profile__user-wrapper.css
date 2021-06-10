@@ -1,3 +1,5 @@
 .profile__user-wrapper {
   display: flex;
+  padding-left: 28px;
+  box-sizing: border-box;
 }

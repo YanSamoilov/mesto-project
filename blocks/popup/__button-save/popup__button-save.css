@@ -1,4 +1,4 @@
-.user-edit__button-save {
+.popup__button-save {
   appearance: none;
   min-width: 358px;
   height: 50px;
@@ -13,17 +13,18 @@
   cursor: pointer;
   padding: 0;
   transition: opacity .3s linear;
-  margin-bottom: 37px;
+  margin: 48px 0 37px;
 }
 
-.user-edit__button-save:hover {
+.popup__button-save:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 640px) {
-  .user-edit__button-save {
+  .popup__button-save {
     min-width: 238px;
+    max-height: 46px;
     font-size: 14px;
-    margin-bottom: 25px;
+    margin: 45px 0 25px;
   }
 }

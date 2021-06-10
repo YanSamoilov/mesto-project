@@ -9,85 +9,81 @@
 </head>
 <body class="page">
   <header class="header page__section">
-    <a href="#" class="header__logo">
-      <img src="./images/logo-img.png" alt="Логотип Место" class="header__logo-image">
-    </a>
+    <a href="#" class="header__logo"></a>
   </header>
   <main>
     <section class="profile page__section">
-      <img src="./images/Avatar.png" alt="Аватар пользователя в круглой рамке" class="profile__avatar">
+      <img src="./images/Avatar.png" alt="Аватар пользователя в круглой рамке." class="profile__avatar">
       <div class="profile__user">
         <div class="profile__user-wrapper">
           <h1 class="profile__user-name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile__user-edit"></button>
+          <button type="button" class="profile__user-edit" aria-label="Изменение профиля пользователя."></button>
         </div>
         <p class="profile__user-action">Исследователь океана</p>
       </div>
-      <div class="profile__add">
-        <button type="button" class="profile__add-card"></button>
-      </div>
+        <button type="button" class="profile__add-card" aria-label="Добавить место в коллекцию."></button>
     </section>
     <section class="cards page__section">
       <ul class="cards__list">
         <li class="cards__list-elem">
-          <img src="./images/bigBlue.jpg" alt="Большая голубая дыра, вид из самолета" class="cards__image">
+          <img src="./images/bigBlue.jpg" alt="Темное круглое пятно в океане, означающее, что там глубоко." class="cards__image">
           <div class="cards__wrapper">
             <h2 class="cards__title">Большая голубая дыра</h2>
-            <button type="button" class="cards__like cards__like_active"></button>
+            <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
           </div>
         </li>
         <li class="cards__list-elem">
-          <img src="./images/elbrus.png" alt="Гора Эльбрус" class="cards__image">
+          <img src="./images/elbrus.png" alt="На горизонте, освещенном восходящим солнце небе, видна высокая гора." class="cards__image">
           <div class="cards__wrapper">
             <h2 class="cards__title">Гора Эльбрус</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
           </div>
         </li>
         <li class="cards__list-elem">
-          <img src="./images/dombai.png" alt="Карачаевск" class="cards__image">
+          <img src="./images/dombai.png" alt="Гора с заснеженными вершинами и лесом внизу" class="cards__image">
           <div class="cards__wrapper">
             <h2 class="cards__title">Домбай</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
           </div>
         </li>
         <li class="cards__list-elem">
-          <img src="./images/amazonka.jpg" alt="Амазонка, вид из самолета" class="cards__image">
+          <img src="./images/amazonka.jpg" alt="Из самолета видно, что извилистое русло реки в джунглях." class="cards__image">
           <div class="cards__wrapper">
             <h2 class="cards__title">Амазонка</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
           </div>
         </li>
         <li class="cards__list-elem">
-          <img src="./images/Great-Barrier-Reef.jpg" alt="Большой барьерный риф, вид из самолета." class="cards__image">
+          <img src="./images/Great-Barrier-Reef.jpg" alt="Извилистая длинная полоса рифов в воде окенана." class="cards__image">
           <div class="cards__wrapper">
             <h2 class="cards__title">Большой барьерный риф</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
           </div>
         </li>
         <li class="cards__list-elem">
-          <img src="./images/karachaevsk.png" alt="Карачаевск" class="cards__image">
+          <img src="./images/karachaevsk.png" alt="Разрушенный временем небольшой монастырь из красного кирпича в лесу." class="cards__image">
           <div class="cards__wrapper">
             <h2 class="cards__title">Карачаево-Черкесск</h2>
-            <button type="button" class="cards__like"></button>
+            <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
           </div>
         </li>
       </ul>
-    </section>
-    <section class="user-edit">
-      <div class="user-edit__main-container">
-        <button type="button" class="user-edit__close"></button>
-        <h2 class="user-edit__title">Редактировать профиль</h2>
-        <fieldset class="user-edit__edit-container">
-          <input type="text" class="user-edit__form">
-          <input type="text" class="user-edit__form">
-        </fieldset>
-        <button type="submit" class="user-edit__button-save">Сохранить</button>
-      </div>
     </section>
   </main>
   <footer class="footer page__section">
     <p class="footer__author">&copy;2021.Самойлов Ян</p>
   </footer>
-  <script src="./pages/index.js"></script>
+  <div class="popup">
+    <form class="popup__main-container" method="POST" name="personal-data">
+      <button type="button" class="popup__close" aria-label="Закрыть окно изменения данных пользователя."></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <fieldset class="popup__edit-container">
+        <input type="text" name="user-name" placeholder="Имя" class="popup__form" id="user-name">
+        <input type="text" name="user-activity" placeholder="О себе" class="popup__form" id="user-activity">
+        <button type="submit" class="popup__button-save" aria-label="Сохранить изменение данных пользователя.">Сохранить</button>
+      </fieldset>
+    </form>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

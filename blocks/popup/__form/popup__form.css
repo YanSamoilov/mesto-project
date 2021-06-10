@@ -1,4 +1,4 @@
-.user-edit__form {
+.popup__form {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   outline: none;
@@ -13,18 +13,18 @@
   font-family:  'Inter', 'Arial', sans-serif;
 }
 
-.user-edit__form:last-child {
+.popup__form:last-child {
   margin-bottom: 48px;
 }
 
 @media screen and (max-width: 640px) {
-  .user-edit__form {
+  .popup__form {
     width: 238px;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .user-edit__form:last-child {
+  .popup__form:last-child {
     margin-bottom: 45px;
   }
 }

@@ -1,4 +1,4 @@
-.user-edit {
+.popup {
   width: 100%;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -7,5 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
+  display: none;
+  position: fixed;
 }

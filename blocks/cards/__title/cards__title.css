@@ -9,9 +9,3 @@
   overflow: hidden;
   white-space: nowrap;
 }
-
-.cards__title:hover {
-  text-overflow: clip;
-  overflow: auto;
-  white-space: normal;
-}

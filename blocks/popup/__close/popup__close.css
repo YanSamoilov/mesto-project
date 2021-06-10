@@ -1,4 +1,4 @@
-.user-edit__close {
+.popup__close {
   appearance: none;
   width: 40px;
   height: 40px;
@@ -9,17 +9,16 @@
   position: absolute;
   top: -40px;
   left: 434px;
-  background-image: url(../../../images/Close.svg);
-  background-position: center;
+  background: center url(../../../images/Close.svg);
   transition: opacity .3s linear;
 }
 
-.user-edit__close:hover {
-  opacity: .8;
+.popup__close:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 640px) {
-  .user-edit__close {
+  .popup__close {
     width: 26px;
     height: 26px;
     top: -42px;
