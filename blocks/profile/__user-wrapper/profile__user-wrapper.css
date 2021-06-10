@@ -1,5 +1,11 @@
 .profile__user-wrapper {
   display: flex;
-  padding-left: 28px;
-  box-sizing: border-box;
+
+}
+
+@media screen and (max-width: 640px) {
+  .profile__user-wrapper {
+    padding-left: 28px;
+    box-sizing: border-box;
+  }
 }
