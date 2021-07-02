@@ -7,7 +7,7 @@
   padding: 0;
   position: absolute;
   top: -40px;
-  left: 434px;
+  right: -40px;
   background: center url(../../../images/Close.svg);
   transition: opacity .3s linear;
 }
@@ -21,7 +21,7 @@
     width: 26px;
     height: 26px;
     top: -42px;
-    left: 250px;
+    right: 0;
     background-image: url(../../../images/closeMobile.svg);
   }
 }

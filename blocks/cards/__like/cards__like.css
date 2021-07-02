@@ -1,9 +1,7 @@
 .cards__like {
-  appearance: none;
   border: none;
   background:#fff  url(../../../images/like.svg);
   padding: 0;
-  box-sizing: border-box;
   width: 22px;
   height: 19px;
   margin: 30px 30px 30px 0;
