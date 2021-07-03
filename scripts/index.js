@@ -1,62 +1,22 @@
-const buttonUserEdit = document.querySelector('.profile__user-edit');       // Кнопка открытия редактирования профиля.
-const buttonUserEditorClose = document.querySelector('#user-editor-close'); // Кнопка закрытия редактирования профиля.
-const buttonSubmit = document.querySelector('.popup__button-save');         // Кнопка подтверждения редактирования профиля.
-
-const buttonAddCard = document.querySelector('.profile__add-card');         // Кнопка добавления карточки.
-
-const buttonAddCardClose = document.querySelector('#add-card-close');       // Кнопка закрытия окна добавления изображения.
-
-const buttonDeleteCard = document.querySelector('.cards__button-bin');      // Кнопка удаления изображения.
-
-const buttonCloseViewImage = document.querySelector('#close-larger-image'); // Кнопка закрытия окна просмотра изображения.
-
-const nameForInput = document.querySelector('#user-name');                  // Введенное имя полльзователя в окне редактирования.
-const activityForInput = document.querySelector('#user-activity');          // Введенное работа полльзователя в окне редактирования.
-
-
+const buttonUserEdit = document.querySelector('.profile__user-edit');        // Кнопка открытия редактирования профиля.
+const buttonUserEditorClose = document.querySelector('#user-editor-close');  // Кнопка закрытия редактирования профиля.
+const buttonSubmit = document.querySelector('.popup__button-save');          // Кнопка подтверждения редактирования профиля.
+const buttonAddCard = document.querySelector('.profile__add-card');          // Кнопка добавления карточки.
+const buttonAddCardClose = document.querySelector('#add-card-close');        // Кнопка закрытия окна добавления изображения.
+const buttonDeleteCard = document.querySelector('.cards__button-bin');       // Кнопка удаления изображения.
+const buttonCloseViewImage = document.querySelector('#close-larger-image');  // Кнопка закрытия окна просмотра изображения.
+const nameUser = document.querySelector('.profile__user-name');              // Имя пользователя на странице.
+const activityUser = document.querySelector('.profile__user-action');        // Деятельность пользователя на странице.
+const nameForInput = document.querySelector('#user-name');                   // Введенное имя пользователя в окне редактирования.
+const activityForInput = document.querySelector('#user-activity');           // Введенное работа пользователя в окне редактирования.
 const userEditorForm = document.querySelector('#popup-user-edit-container'); // Форма редактирования профиля.
-const addCardForm = document.querySelector('#popup-add-card-container');    // Форма добавления новой карточки.
-
-const cardsList = document.querySelector('.cards__list');                   // Список содержащий карточки.
-
-const userEditClassList = document.querySelector('#popup-user-editor').classList;
-const cardAddPopupClassList = document.querySelector('#popup-add-card').classList;
-
-// Массив стартовых карточек
-const initialCards = [
-  {
-    name: 'Большая голубая дыра',
-    link: './images/bigBlue.jpg',
-    alt: 'Темное круглое пятно в океане, означающее, что там глубоко.'
-  },
-  {
-    name: 'Антарктида',
-    link: './images/antarctica.jpg',
-    alt: 'Океан омывает ледяные горы.'
-  },
-  {
-    name: 'Мадагаскар',
-    link: './images/madagaskar.jpg',
-    alt: 'Темнокожие женщины идут по проселочной дороге на фоне африканские деревья.'
-  },
-  {
-    name: 'Амазонка',
-    link: './images/amazonka.jpg',
-    alt: 'Из самолета видно извилистое русло реки в джунглях.'
-  },
-  {
-    name: 'Большой барьерный риф',
-    link: './images/Great-Barrier-Reef.jpg',
-    alt: 'Извилистая длинная полоса рифов в воде окенана.'
-  },
-  {
-    name: 'Под водой',
-    link: './images/underwater.jpg',
-    alt: 'Коралл под водой.'
-  }
-]
-
-
+const addCardForm = document.querySelector('#popup-add-card-container');     // Форма добавления новой карточки.
+const largeImagePopup = document.querySelector('#popup-view-image');         // Попап просмотра увеличенного изображения.
+const cardAddPopup = document.querySelector('#popup-add-card');              // Попап добавления карточки.
+const userEditPopup = document.querySelector('#popup-user-editor');          // Попап редактирования профиля.
+const cardsList = document.querySelector('.cards__list');                    // Список содержащий карточки.
+const titleOfCard = document.querySelector('#card-title');                   // Название карточки.
+const srcOfCard = document.querySelector('#card-url');                       // Путь карточки.
 
 // Создание карточек из шаблона
 const createCard = (item) => {
@@ -71,71 +31,74 @@ const createCard = (item) => {
   })
 
   cardElement.querySelector('.cards__button-bin').addEventListener('click', function(event) { // Слушатель каждой карточки на удаление
-    deleteCard(event.target);
+    handleDeleteCard(event.target);
   })
 
   cardElement.querySelector('.cards__image').addEventListener('click', function(event) {      // Слушатель каждой карточки на просмотр увеличенного изображения
-    document.querySelector('#popup-view-image').classList.add('popup_active');
-    viewImage(event.target);
+    largeImagePopup.classList.add('popup_active');
+    handleViewImage(event.target);
   })
   return cardElement;
 }
 
+// Открытие попапа
+const handleOpenPopup = (popup) => {
+  popup.classList.add('popup_active');
+}
+
+// Закрытие попапа
+const handleClosePopup = (popup) => {
+  popup.classList.remove('popup_active');
+}
+
 // Открывает редактирование профиля
-const openUserEditor = () => {
-  nameForInput.setAttribute('placeholder', document.querySelector('.profile__user-name').textContent);          // Вставка в открывающийся popup имени пользователя.
-  activityForInput.setAttribute('placeholder', document.querySelector('.profile__user-action').textContent);    // Вставка в открывающийся popup деятельность пользователя.
-  userEditClassList.add('popup_active');
+const handleOpenUserEditor = () => {
+  nameForInput.value = nameUser.textContent;          // Вставка в открывающийся popup имени пользователя.
+  activityForInput.value = activityUser.textContent;  // Вставка в открывающийся popup деятельность пользователя.
+  handleOpenPopup(userEditPopup);
 }
 
 // Сохранение введенных данных в форме редактирования профиля
-const formSubmitHandler = event => {
+const submitFormProfile = (event, popup) => {
   event.preventDefault();
-  const nameSubmitted = document.querySelector('.profile__user-name');
-  const activitySubmitted = document.querySelector('.profile__user-action');
-  nameSubmitted.textContent = nameForInput.value;
-  activitySubmitted.textContent = activityForInput.value;
-  userEditClassList.remove('popup_active');
+  nameUser.textContent = nameForInput.value;
+  activityUser.textContent = activityForInput.value;
+  handleClosePopup(popup);
 }
 
 // Закрытие редактирование профиля без сохранения введенных данных
-const closeUserEditor = () => {
+const handleCloseUserEditor = popup => {
   userEditorForm.reset();
-  userEditClassList.remove('popup_active');
-}
-
-// Открытие окна добавления карточки
-const openAddCard = () => {
-  cardAddPopupClassList.add('popup_active');
+  handleClosePopup(popup);
 }
 
 // Добавление новой карточки пользователем в начало списка
-const addNewCard = event => {
+const submitFormNewCard = (event, popup) => {
   event.preventDefault();
   const card = {
-    name: document.querySelector('#card-title').value,
-    link: document.querySelector('#card-url').value,
-    alt: ''
+    name: titleOfCard.value,
+    link: srcOfCard.value,
+    alt: titleOfCard.value
   }
   cardsList.prepend(createCard(card));
-  cardAddPopupClassList.remove('popup_active');
+  handleClosePopup(popup);
   addCardForm.reset();
 }
 
 // Закрытие окна добавления карточки
-const closeAddCard = () => {
+const handleCloseAddCard = popup => {
   addCardForm.reset();
-  cardAddPopupClassList.remove('popup_active');
+  handleClosePopup(popup);
 }
 
 // Удаление карточки места
-const deleteCard = (button) => {
+const handleDeleteCard = (button) => {
   const card = button.closest('.cards__list-elem');
   card.remove();
 }
 
 // Открытие увеличенного просмотра изображения места
-const viewImage = (image) => {
+const handleViewImage = (image) => {
   const largerImage = document.querySelector('.popup__larger-image');
   const figCaption = document.querySelector('.popup__figcaption');
   const elemList = image.closest('.cards__list-elem');
@@ -144,23 +107,10 @@ const viewImage = (image) => {
   figCaption.textContent = elemList.querySelector('.cards__title').textContent;
 }
 
-// Закрытие окна увеличенного просмотра изображений
-const closeLargerImage = () => {
-  document.querySelector('#popup-view-image').classList.remove('popup_active');
-}
-
-initialCards.forEach(item => {                                              // Расстановка стартовых карточек.
-  cardsList.append(createCard(item));
-})
-
-const buttonLike = document.querySelector('.cards__list');                  // Кнопка лайк изображения.
-
-buttonUserEdit.addEventListener('click', openUserEditor);
-userEditorForm.addEventListener('submit', formSubmitHandler);
-buttonUserEditorClose.addEventListener('click', closeUserEditor);
-
-buttonAddCard.addEventListener('click', openAddCard);
-addCardForm.addEventListener('submit', addNewCard);
-buttonAddCardClose.addEventListener('click', closeAddCard);
-
-buttonCloseViewImage.addEventListener('click', closeLargerImage);
+buttonUserEdit.addEventListener('click', handleOpenUserEditor);
+userEditorForm.addEventListener('submit', () => submitFormProfile(event, userEditPopup));
+buttonUserEditorClose.addEventListener('click', () => handleCloseUserEditor(userEditPopup));
+buttonAddCard.addEventListener('click', () => handleOpenPopup(cardAddPopup));
+addCardForm.addEventListener('submit', () => submitFormNewCard(event, cardAddPopup));
+buttonAddCardClose.addEventListener('click', () => handleCloseAddCard(cardAddPopup));
+buttonCloseViewImage.addEventListener('click', () => handleClosePopup(largeImagePopup));
