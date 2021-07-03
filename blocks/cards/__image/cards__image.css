@@ -2,4 +2,7 @@
   max-width: 282px;
   height: 282px;
   display: block;
+  object-position: center;
+  object-fit: cover;
+  cursor: pointer;
 }

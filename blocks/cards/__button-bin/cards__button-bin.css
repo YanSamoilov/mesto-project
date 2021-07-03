@@ -1,0 +1,17 @@
+.cards__button-bin {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  background-image: url(../../../images/bin.svg);
+  border: none;
+  background-color: transparent;
+  width: 18px;
+  height: 19px;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity .3s linear;
+}
+
+.cards__button-bin:hover {
+  opacity: .5;
+}
