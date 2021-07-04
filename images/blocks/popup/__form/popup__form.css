@@ -1,0 +1,30 @@
+.popup__form {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  outline: none;
+  box-sizing: border-box;
+  padding-bottom: 13px;
+  padding-top: 30px;
+  color: #000;
+  width: 358px;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+  font-family:  'Inter', 'Arial', sans-serif;
+}
+
+.popup__form:last-child {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 640px) {
+  .popup__form {
+    width: 238px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .popup__form:last-child {
+    margin-bottom: 45px;
+  }
+}

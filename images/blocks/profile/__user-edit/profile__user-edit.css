@@ -1,0 +1,22 @@
+.profile__user-edit {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  margin-top: 37px;
+  cursor: pointer;
+  background: url(../../../images/edit.svg) no-repeat center;
+  transition: opacity .3s linear;
+}
+
+.profile__user-edit:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 640px) {
+  .profile__user-edit {
+    width: 18px;
+    height: 18px;
+    margin-top: 30px;
+  }
+}
