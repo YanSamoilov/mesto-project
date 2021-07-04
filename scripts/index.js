@@ -35,19 +35,19 @@ const createCard = (item) => {
   })
 
   cardElement.querySelector('.cards__image').addEventListener('click', function(event) {      // Слушатель каждой карточки на просмотр увеличенного изображения
-    largeImagePopup.classList.add('popup_active');
+    openPopup(largeImagePopup);
     handleViewImage(event.target);
   })
   return cardElement;
 }
 
 // Открытие попапа
-const handleOpenPopup = (popup) => {
+const openPopup = (popup) => {
   popup.classList.add('popup_active');
 }
 
 // Закрытие попапа
-const handleClosePopup = (popup) => {
+const closePopup = (popup) => {
   popup.classList.remove('popup_active');
 }
 
@@ -55,25 +55,25 @@ const handleClosePopup = (popup) => {
 const handleOpenUserEditor = () => {
   nameForInput.value = nameUser.textContent;          // Вставка в открывающийся popup имени пользователя.
   activityForInput.value = activityUser.textContent;  // Вставка в открывающийся popup деятельность пользователя.
-  handleOpenPopup(userEditPopup);
+  openPopup(userEditPopup);
 }
 
 // Сохранение введенных данных в форме редактирования профиля
-const submitFormProfile = (event, popup) => {
+const submitFormProfile = event => {
   event.preventDefault();
   nameUser.textContent = nameForInput.value;
   activityUser.textContent = activityForInput.value;
-  handleClosePopup(popup);
+  closePopup(userEditPopup);
 }
 
 // Закрытие редактирование профиля без сохранения введенных данных
-const handleCloseUserEditor = popup => {
+const handleCloseUserEditor = () => {
   userEditorForm.reset();
-  handleClosePopup(popup);
+  closePopup(userEditPopup);
 }
 
 // Добавление новой карточки пользователем в начало списка
-const submitFormNewCard = (event, popup) => {
+const submitFormNewCard = (event) => {
   event.preventDefault();
   const card = {
     name: titleOfCard.value,
@@ -81,14 +81,14 @@ const submitFormNewCard = (event, popup) => {
     alt: titleOfCard.value
   }
   cardsList.prepend(createCard(card));
-  handleClosePopup(popup);
+  closePopup(cardAddPopup);
   addCardForm.reset();
 }
 
 // Закрытие окна добавления карточки
-const handleCloseAddCard = popup => {
+const handleCloseAddCard = () => {
   addCardForm.reset();
-  handleClosePopup(popup);
+  closePopup(cardAddPopup);
 }
 
 // Удаление карточки места
@@ -108,9 +108,9 @@ const handleViewImage = (image) => {
 }
 
 buttonUserEdit.addEventListener('click', handleOpenUserEditor);
-userEditorForm.addEventListener('submit', () => submitFormProfile(event, userEditPopup));
-buttonUserEditorClose.addEventListener('click', () => handleCloseUserEditor(userEditPopup));
-buttonAddCard.addEventListener('click', () => handleOpenPopup(cardAddPopup));
-addCardForm.addEventListener('submit', () => submitFormNewCard(event, cardAddPopup));
-buttonAddCardClose.addEventListener('click', () => handleCloseAddCard(cardAddPopup));
-buttonCloseViewImage.addEventListener('click', () => handleClosePopup(largeImagePopup));
+userEditorForm.addEventListener('submit', submitFormProfile);
+buttonUserEditorClose.addEventListener('click', handleCloseUserEditor);
+buttonAddCard.addEventListener('click', () => openPopup(cardAddPopup));
+addCardForm.addEventListener('submit', submitFormNewCard);
+buttonAddCardClose.addEventListener('click', handleCloseAddCard);
+buttonCloseViewImage.addEventListener('click', () => closePopup(largeImagePopup));
