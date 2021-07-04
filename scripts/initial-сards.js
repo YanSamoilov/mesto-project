@@ -31,8 +31,3 @@ const initialCards = [
     alt: 'Коралл под водой.'
   }
 ]
-
-
-initialCards.forEach(item => {         // Расстановка стартовых карточек.
-  cardsList.append(createCard(item));
-})

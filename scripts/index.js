@@ -114,3 +114,7 @@ buttonAddCard.addEventListener('click', () => openPopup(cardAddPopup));
 addCardForm.addEventListener('submit', submitFormNewCard);
 buttonAddCardClose.addEventListener('click', handleCloseAddCard);
 buttonCloseViewImage.addEventListener('click', () => closePopup(largeImagePopup));
+
+initialCards.forEach(item => {         // Расстановка стартовых карточек.
+  cardsList.append(createCard(item));
+})
