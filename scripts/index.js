@@ -17,6 +17,7 @@ const userEditPopup = document.querySelector('#popup-user-editor');          // 
 const cardsList = document.querySelector('.cards__list');                    // Список содержащий карточки.
 const titleOfCard = document.querySelector('#card-title');                   // Название карточки.
 const srcOfCard = document.querySelector('#card-url');                       // Путь карточки.
+let noticePopupActive;
 
 // Создание карточек из шаблона
 const createCard = (item) => {
@@ -44,6 +45,9 @@ const createCard = (item) => {
 // Открытие попапа
 const openPopup = (popup) => {
   popup.classList.add('popup_active');
+  noticePopupActive = popup.id;
+  popup.addEventListener('click', handleClosePopupOverlay);
+  document.addEventListener('keydown', handleClosePopupEsc);
 }
 
 // Закрытие попапа
@@ -70,6 +74,23 @@ const submitFormProfile = event => {
 const handleCloseUserEditor = () => {
   userEditorForm.reset();
   closePopup(userEditPopup);
+}
+
+// Закрытие активного popup.
+const handleClosePopup = () => {
+  noticePopupActive === ('popup-add-card') ? handleCloseAddCard() :
+  noticePopupActive === ('popup-user-editor') ? handleCloseUserEditor() :
+  noticePopupActive === ('popup-view-image') ? closePopup(largeImagePopup) : '';
+}
+
+// Закрытие при клике вне popup.
+const handleClosePopupOverlay = (evt) => {
+  evt.target.classList.contains('popup') ? handleClosePopup() : '';
+}
+
+// Закрытие popup кликом Esc.
+const handleClosePopupEsc = (evt) => {
+  evt.key === 'Escape' ? handleClosePopup() : '';
 }
 
 // Добавление новой карточки пользователем в начало списка
@@ -109,12 +130,16 @@ const handleViewImage = (image) => {
 
 buttonUserEdit.addEventListener('click', handleOpenUserEditor);
 userEditorForm.addEventListener('submit', submitFormProfile);
-buttonUserEditorClose.addEventListener('click', handleCloseUserEditor);
+buttonUserEditorClose.addEventListener('click', handleClosePopup);
 buttonAddCard.addEventListener('click', () => openPopup(cardAddPopup));
 addCardForm.addEventListener('submit', submitFormNewCard);
-buttonAddCardClose.addEventListener('click', handleCloseAddCard);
+buttonAddCardClose.addEventListener('click', handleClosePopup);
 buttonCloseViewImage.addEventListener('click', () => closePopup(largeImagePopup));
 
 initialCards.forEach(item => {         // Расстановка стартовых карточек.
   cardsList.append(createCard(item));
 })
+
+// document.addEventListener('click', (evt) => {
+//   console.log(evt.target);
+// })
