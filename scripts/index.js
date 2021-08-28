@@ -129,27 +129,27 @@ const handleViewImage = (image) => {
 }
 
 // Отображать ошибку при заполнении формы
-const showError = (formElem, inputElem, errorMessage) => {
+const showError = (formElem, inputElem, errorMessage, formsData) => {
   const spanError = formElem.querySelector(`.${inputElem.id}-error`);
   spanError.textContent = errorMessage;
-  inputElem.classList.add('popup__form_type_error');
-  spanError.classList.add('popup__error_active');
+  inputElem.classList.add(formsData.inputErrorClass);
+  spanError.classList.add(formsData.errorClass);
 }
 
 // Скрыть ошибку при заполнении формы
-const hideError = (formElem, inputElem) => {
+const hideError = (formElem, inputElem, formsData) => {
   const spanError = formElem.querySelector(`.${inputElem.id}-error`);
-  inputElem.classList.remove('popup__form_type_error');
-  spanError.classList.remove('popup__error_active');
+  inputElem.classList.remove(formsData.inputErrorClass);
+  spanError.classList.remove(formsData.errorClass);
   spanError.textContent = '';
 }
 
 // Проверка на валидность input
-const checkValidity = (formElem, inputElem) => {
+const checkValidity = (formElem, inputElem, formsData) => {
   if (!inputElem.validity.valid) {
-    showError(formElem, inputElem, inputElem.validationMessage);
+    showError(formElem, inputElem, inputElem.validationMessage, formsData);
   } else {
-    hideError(formElem, inputElem);
+    hideError(formElem, inputElem, formsData);
   }
 }
 
@@ -161,34 +161,34 @@ const hasInvalidInput = (inputList) => {
 }
 
 // Сменить активность кнопки сохранения popup
-const toggleSubmitActivity = (inputList, buttonSubmit) => {
+const toggleSubmitActivity = (inputList, buttonSubmit, formsData) => {
   if (hasInvalidInput(inputList)) {
-    buttonSubmit.classList.add('popup__button-save_inactive');
+    buttonSubmit.classList.add(formsData.inactiveButtonClass);
     buttonSubmit.setAttribute('disabled', 'disabled');
   } else {
-    buttonSubmit.classList.remove('popup__button-save_inactive');
+    buttonSubmit.classList.remove(formsData.inactiveButtonClass);
     buttonSubmit.removeAttribute('disabled');
   }
 }
 
 // Перебор input в форме для установки слушателя
-const setValidationInput = (formElem) => {
-  const inputList = Array.from(formElem.querySelectorAll('.popup__form'));
-  const buttonSubmit = formElem.querySelector('.popup__button-save');
-  toggleSubmitActivity(inputList, buttonSubmit);
+const setValidationInput = (formElem, formsData) => {
+  const inputList = Array.from(formElem.querySelectorAll(formsData.inputSelector));
+  const buttonSubmit = formElem.querySelector(formsData.submitButtonSelector);
+  toggleSubmitActivity(inputList, buttonSubmit, formsData);
   inputList.forEach((inputElem) => {
     inputElem.addEventListener('input', () => {
-      checkValidity(formElem, inputElem);
-      toggleSubmitActivity(inputList, buttonSubmit);
+      checkValidity(formElem, inputElem, formsData);
+      toggleSubmitActivity(inputList, buttonSubmit, formsData);
     })
   })
 }
 
 // Перебор всех форм для последующего включения валидации в содержащихся input
-const enableValidationForms = () => {
-  const formsList = document.querySelectorAll('.popup__main-container');
+const enableValidationForms = (formsData) => {
+  const formsList = document.querySelectorAll(formsData.formSelector);
   formsList.forEach((formElem) => {
-    setValidationInput(formElem);
+    setValidationInput(formElem, formsData);
   })
 }
 
@@ -206,4 +206,11 @@ initialCards.forEach(item => {         // Расстановка стартов�
   cardsList.append(createCard(item));
 })
 
-enableValidationForms();
+enableValidationForms({
+  formSelector: '.popup__main-container',
+  inputSelector: '.popup__form',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_inactive',
+  inputErrorClass: 'popup__form_type_error',
+  errorClass: 'popup__error_active'
+});
