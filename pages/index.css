@@ -44,3 +44,8 @@
 @import url(../blocks/popup/__figure-image/popup__figure-image.css);
 @import url(../blocks/popup/__larger-image/popup__larger-image.css);
 @import url(../blocks/popup/__figcaption/popup__figcaption.css);
+@import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__error/_active/popup__error_active.css);
+@import url(../blocks/popup/__form/_type/popup__form_type_error.css);
+@import url(../blocks/popup/__label/popup__label.css);
+@import url(../blocks/popup/__button-save/_inactive/popup__button-save_inactive.css);
