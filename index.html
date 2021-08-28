@@ -37,8 +37,16 @@
       <button type="button" class="popup__close" id="user-editor-close" aria-label="Закрыть окно изменения данных пользователя."></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <fieldset class="popup__edit-container">
-        <input type="text" name="user-name" placeholder="Имя" class="popup__form" id="user-name">
-        <input type="text" name="user-activity" placeholder="О себе" class="popup__form" id="user-activity">
+        <label for="user-name" class="popup__label">
+          <input type="text" name="user-name" placeholder="Имя" class="popup__form" id="user-name" minlength="2"
+          maxlength="40" required>
+          <span class="popup__error user-name-error"></span>
+        </label>
+        <label for="user-activity" class="popup__label">
+          <input type="text" name="user-activity" placeholder="О себе" class="popup__form" id="user-activity"
+          minlength="2" maxlength="200" required>
+          <span class="popup__error user-activity-error"></span>
+        </label>
         <button type="submit" class="popup__button-save" aria-label="Сохранить изменение данных пользователя.">Сохранить</button>
       </fieldset>
     </form>
@@ -48,8 +56,15 @@
       <button type="button" class="popup__close" id="add-card-close" aria-label="Закрыть окно добавления карточки."></button>
       <h3 class="popup__title">Новое место</h3>
       <fieldset class="popup__edit-container">
-        <input type="text" name="card-title" placeholder="Название" class="popup__form" id="card-title">
-        <input type="text" name="image-url" placeholder="Ссылка на картинку" class="popup__form" id="card-url">
+        <label for="card-title" class="popup__label">
+          <input type="text" name="card-title" placeholder="Название" class="popup__form" id="card-title" minlength="2"
+          maxlength="30" required>
+          <span class="popup__error card-title-error"></span>
+        </label>
+        <label for="card-url" class="popup__label">
+          <input type="url" name="image-url" placeholder="Ссылка на картинку" class="popup__form" id="card-url" required>
+          <span class="popup__error card-url-error"></span>
+        </label>
         <button type="submit" class="popup__button-save" aria-label="Сохранить новую карточку.">Сохранить</button>
       </fieldset>
     </form>

@@ -128,18 +128,82 @@ const handleViewImage = (image) => {
   figCaption.textContent = elemList.querySelector('.cards__title').textContent;
 }
 
+// Отображать ошибку при заполнении формы
+const showError = (formElem, inputElem, errorMessage) => {
+  const spanError = formElem.querySelector(`.${inputElem.id}-error`);
+  spanError.textContent = errorMessage;
+  inputElem.classList.add('popup__form_type_error');
+  spanError.classList.add('popup__error_active');
+}
+
+// Скрыть ошибку при заполнении формы
+const hideError = (formElem, inputElem) => {
+  const spanError = formElem.querySelector(`.${inputElem.id}-error`);
+  inputElem.classList.remove('popup__form_type_error');
+  spanError.classList.remove('popup__error_active');
+  spanError.textContent = '';
+}
+
+// Проверка на валидность input
+const checkValidity = (formElem, inputElem) => {
+  if (!inputElem.validity.valid) {
+    showError(formElem, inputElem, inputElem.validationMessage);
+  } else {
+    hideError(formElem, inputElem);
+  }
+}
+
+//
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+// Сменить активность кнопки сохранения popup
+const toggleSubmitActivity = (inputList, buttonSubmit) => {
+  if (hasInvalidInput(inputList)) {
+    buttonSubmit.classList.add('popup__button-save_inactive');
+    buttonSubmit.setAttribute('disabled', 'disabled');
+  } else {
+    buttonSubmit.classList.remove('popup__button-save_inactive');
+    buttonSubmit.removeAttribute('disabled');
+  }
+}
+
+// Перебор input в форме для установки слушателя
+const setValidationInput = (formElem) => {
+  const inputList = Array.from(formElem.querySelectorAll('.popup__form'));
+  const buttonSubmit = formElem.querySelector('.popup__button-save');
+  toggleSubmitActivity(inputList, buttonSubmit);
+  inputList.forEach((inputElem) => {
+    inputElem.addEventListener('input', () => {
+      checkValidity(formElem, inputElem);
+      toggleSubmitActivity(inputList, buttonSubmit);
+    })
+  })
+}
+
+// Перебор всех форм для последующего включения валидации в содержащихся input
+const enableValidationForms = () => {
+  const formsList = document.querySelectorAll('.popup__main-container');
+  formsList.forEach((formElem) => {
+    setValidationInput(formElem);
+  })
+}
+
 buttonUserEdit.addEventListener('click', handleOpenUserEditor);
 userEditorForm.addEventListener('submit', submitFormProfile);
 buttonUserEditorClose.addEventListener('click', handleClosePopup);
+
 buttonAddCard.addEventListener('click', () => openPopup(cardAddPopup));
 addCardForm.addEventListener('submit', submitFormNewCard);
 buttonAddCardClose.addEventListener('click', handleClosePopup);
+
 buttonCloseViewImage.addEventListener('click', () => closePopup(largeImagePopup));
 
 initialCards.forEach(item => {         // Расстановка стартовых карточек.
   cardsList.append(createCard(item));
 })
 
-// document.addEventListener('click', (evt) => {
-//   console.log(evt.target);
-// })
+enableValidationForms();
