@@ -1,3 +1,5 @@
+export {initialCards};
+
 // Массив стартовых карточек
 const initialCards = [
   {
