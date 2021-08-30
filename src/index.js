@@ -3,6 +3,7 @@ import {createCard, submitFormNewCard, largeImagePopup} from './components/card.
 import {initialCards} from './components/initial-сards.js';
 import {handleOpenUserEditor, submitFormProfile, handleClosePopup, closePopup, openPopup, cardAddPopup} from './components/modal.js';
 import {enableValidationForms} from './components/validation.js';
+import './pages/index.css';
 
 const buttonUserEdit = document.querySelector('.profile__user-edit');        // Кнопка открытия редактирования профиля.
 const buttonUserEditorClose = document.querySelector('#user-editor-close');  // Кнопка закрытия редактирования профиля.

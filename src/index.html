@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
   <link rel="shortcut icon" href="./images/earth.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
   <header class="header page__section">
@@ -14,7 +13,7 @@
   </header>
   <main>
     <section class="profile page__section">
-      <img src="./images/Avatar.png" alt="Аватар пользователя в круглой рамке." class="profile__avatar">
+      <img src="<%=require('./images/Avatar.png')%>" alt="Аватар пользователя в круглой рамке." class="profile__avatar">
       <div class="profile__user">
         <div class="profile__user-wrapper">
           <h1 class="profile__user-name">Жак-Ив Кусто</h1>
@@ -33,7 +32,7 @@
     <p class="footer__author">&copy;2021.Самойлов Ян</p>
   </footer>
   <div class="popup" id="popup-user-editor">
-    <form class="popup__main-container" id="popup-user-edit-container" method="POST" name="personal-data">
+    <form class="popup__main-container" id="popup-user-edit-container" method="POST" name="personal-data" novalidate>
       <button type="button" class="popup__close" id="user-editor-close" aria-label="Закрыть окно изменения данных пользователя."></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <fieldset class="popup__edit-container">
@@ -52,7 +51,7 @@
     </form>
   </div>
   <div class="popup" id="popup-add-card">
-    <form class="popup__main-container" id="popup-add-card-container" method="POST" name="card">
+    <form class="popup__main-container" id="popup-add-card-container" method="POST" name="card" novalidate>
       <button type="button" class="popup__close" id="add-card-close" aria-label="Закрыть окно добавления карточки."></button>
       <h3 class="popup__title">Новое место</h3>
       <fieldset class="popup__edit-container">
@@ -86,10 +85,5 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./scripts/components/initial-сards.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
-  <script type="module" src="./scripts/components/card.js"></script>
-  <script type="module" src="./scripts/components/modal.js"></script>
-  <script type="module" src="./scripts/components/validation.js"></script>
 </body>
 </html>
