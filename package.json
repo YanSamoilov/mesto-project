@@ -1,0 +1,39 @@
+{
+  "name": "mesto-project",
+  "version": "1.0.0",
+  "description": "![](./images/Vector.svg)\r # Учебный проект \"Место\"\r --------------\r ## Описание\r ### Версия 2.0\r Данный учебный проект предназначен повторения и закрепления навыков работы с формами, Grid Layout, Flexbox и др.\r В проекте второй версии были реализованы возможности языка javaScript, которые позволяют менять данные о пользователе, добавлять и удалять карточки, ставить лайки.\r В дальнейшем проект будет дополняться технологиями по мере прохождения учебной программы.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YanSamoilov/mesto-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YanSamoilov/mesto-project/issues"
+  },
+  "homepage": "https://github.com/YanSamoilov/mesto-project#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "autoprefixer": "^10.3.3",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^6.2.0",
+    "cssnano": "^5.0.8",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.2.0",
+    "postcss-loader": "^6.1.1",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  },
+  "dependencies": {
+    "core-js": "^3.16.4"
+  }
+}
