@@ -1,6 +1,6 @@
 export {createCard, submitFormNewCard, handleDeleteCard, largeImagePopup};
 import {openPopup, handleViewImage, closePopup, cardAddPopup} from './modal.js';
-import {cardsList, addCardForm} from '../index.js';
+import {cardsList, addCardForm} from '../pages/index.js';
 
 const largeImagePopup = document.querySelector('#popup-view-image');  // Попап просмотра увеличенного изображения.
 const titleOfCard = document.querySelector('#card-title');            // Название карточки.

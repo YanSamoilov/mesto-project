@@ -1,6 +1,6 @@
 export {handleOpenUserEditor, submitFormProfile, handleClosePopup, openPopup, handleViewImage, closePopup, cardAddPopup};
 import {largeImagePopup} from './card.js';
-import {userEditorForm, addCardForm} from '../index.js';
+import {userEditorForm, addCardForm} from '../pages/index.js';
 
 let noticePopupActive;
 const nameForInput = document.querySelector('#user-name');              // Введенное имя пользователя в окне редактирования.
