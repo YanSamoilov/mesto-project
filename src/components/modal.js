@@ -62,7 +62,6 @@ const handleClosePopupOverlay = (evt) => {
 
 // Закрытие popup кликом Esc.
 const handleClosePopupEsc = (evt) => {
-  console.log('111');
   if(evt.key === 'Escape')
     handleClosePopup();
 }
