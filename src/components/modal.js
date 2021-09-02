@@ -51,6 +51,7 @@ const handleClosePopup = () => {
   noticePopupActive === ('popup-add-card') ? handleCloseAddCard() :
   noticePopupActive === ('popup-user-editor') ? handleCloseUserEditor() :
   noticePopupActive === ('popup-view-image') && closePopup(largeImagePopup);
+  document.removeEventListener('keydown', handleClosePopupEsc);
 }
 
 // Закрытие при клике вне popup.
