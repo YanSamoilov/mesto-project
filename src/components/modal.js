@@ -1,6 +1,7 @@
-export {handleOpenUserEditor, submitFormProfile, handleClosePopup, openPopup, handleViewImage, closePopup, cardAddPopup};
+export {handleOpenUserEditor, submitFormProfile, handleClosePopup, openPopup, handleOpenImagePopup, closePopup, cardAddPopup};
 import {largeImagePopup} from './card.js';
 import {userEditorForm, addCardForm} from '../pages/index.js';
+import {resetValidation} from './validation.js';
 
 let noticePopupActive;
 const nameForInput = document.querySelector('#user-name');              // Введенное имя пользователя в окне редактирования.
@@ -16,6 +17,7 @@ const openPopup = (popup) => {
   noticePopupActive = popup.id;
   popup.addEventListener('click', handleClosePopupOverlay);
   document.addEventListener('keydown', handleClosePopupEsc);
+  if((noticePopupActive === 'popup-add-card') || (noticePopupActive === 'popup-user-editor')) resetValidation(popup);
 }
 
 // Закрытие попапа
@@ -48,17 +50,19 @@ const handleCloseUserEditor = () => {
 const handleClosePopup = () => {
   noticePopupActive === ('popup-add-card') ? handleCloseAddCard() :
   noticePopupActive === ('popup-user-editor') ? handleCloseUserEditor() :
-  noticePopupActive === ('popup-view-image') ? closePopup(largeImagePopup) : '';
+  noticePopupActive === ('popup-view-image') && closePopup(largeImagePopup);
 }
 
 // Закрытие при клике вне popup.
 const handleClosePopupOverlay = (evt) => {
-  evt.target.classList.contains('popup') ? handleClosePopup() : '';
+  if(evt.target.classList.contains('popup'))
+    handleClosePopup();
 }
 
 // Закрытие popup кликом Esc.
 const handleClosePopupEsc = (evt) => {
-  evt.key === 'Escape' ? handleClosePopup() : '';
+  if(evt.key === 'Escape')
+    handleClosePopup();
 }
 
 // Закрытие окна добавления карточки
@@ -68,11 +72,11 @@ const handleCloseAddCard = () => {
 }
 
 // Открытие увеличенного просмотра изображения места
-const handleViewImage = (image) => {
+const handleOpenImagePopup = (name, link, alt) => {
   const largerImage = document.querySelector('.popup__larger-image');
   const figCaption = document.querySelector('.popup__figcaption');
-  const elemList = image.closest('.cards__list-elem');
-  largerImage.setAttribute('src', image.getAttribute('src'));
-  largerImage.setAttribute('alt', image.getAttribute('alt'));
-  figCaption.textContent = elemList.querySelector('.cards__title').textContent;
+  largerImage.setAttribute('src', link);
+  largerImage.setAttribute('alt', alt);
+  figCaption.textContent = name;
+  openPopup(largeImagePopup);
 }
