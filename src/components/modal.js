@@ -1,7 +1,10 @@
-export {handleOpenUserEditor, submitFormProfile, handleClosePopup, openPopup, handleOpenImagePopup, closePopup, cardAddPopup};
+export {handleOpenUserEditor, submitFormProfile, handleClosePopup, openPopup, handleOpenImagePopup, closePopup, cardAddPopup, nameUser, activityUser,
+  changeAvatarPopup, submitNewAvatar};
 import {largeImagePopup} from './card.js';
-import {userEditorForm, addCardForm} from '../pages/index.js';
+import {userEditorForm, addCardForm, avatar, changeAvatarForm} from '../pages/index.js';
 import {resetValidation} from './validation.js';
+import {setNewUserInfo, setNewAvatar} from './user.js';
+import {confirmDeleteCardPopup} from './util.js'
 
 let noticePopupActive;
 const nameForInput = document.querySelector('#user-name');              // Введенное имя пользователя в окне редактирования.
@@ -10,6 +13,8 @@ const activityForInput = document.querySelector('#user-activity');      // Вв�
 const activityUser = document.querySelector('.profile__user-action');   // Деятельность пользователя на странице.
 const userEditPopup = document.querySelector('#popup-user-editor');     // Попап редактирования профиля.
 const cardAddPopup = document.querySelector('#popup-add-card');         // Попап добавления карточки.
+const changeAvatarPopup = document.querySelector('#popup-change-avatar') // Попап смены аватара.
+const avatarURLInput = document.querySelector('#avatar-url')            // Инпут новой ссылки для смены аватара.
 
 // Открытие попапа
 const openPopup = (popup) => {
@@ -17,7 +22,7 @@ const openPopup = (popup) => {
   noticePopupActive = popup.id;
   popup.addEventListener('click', handleClosePopupOverlay);
   document.addEventListener('keydown', handleClosePopupEsc);
-  if((noticePopupActive === 'popup-add-card') || (noticePopupActive === 'popup-user-editor')) resetValidation(popup);
+  if((noticePopupActive === 'popup-add-card') || (noticePopupActive === 'popup-user-editor') || (noticePopupActive === 'popup-change-avatar')) resetValidation(popup);
 }
 
 // Закрытие попапа
@@ -32,12 +37,19 @@ const handleOpenUserEditor = () => {
   openPopup(userEditPopup);
 }
 
+// Сохранение нового аватара
+const submitNewAvatar = (event) => {
+  event.preventDefault();
+  const newAvatarURL = avatarURLInput.value;
+  setNewAvatar(newAvatarURL, changeAvatarPopup, avatar);
+}
+
 // Сохранение введенных данных в форме редактирования профиля
 const submitFormProfile = event => {
   event.preventDefault();
-  nameUser.textContent = nameForInput.value;
-  activityUser.textContent = activityForInput.value;
-  closePopup(userEditPopup);
+  const newUserName = nameForInput.value;
+  const newUserActivity = activityForInput.value;
+  setNewUserInfo(newUserName, newUserActivity, nameUser, activityUser, avatar, userEditPopup);
 }
 
 // Закрытие редактирование профиля без сохранения введенных данных
@@ -46,11 +58,19 @@ const handleCloseUserEditor = () => {
   closePopup(userEditPopup);
 }
 
+// Закрытие окна смены аватара без сохранения введенных данных
+const handleCloseChangeAvatar = () => {
+  changeAvatarForm.reset();
+  closePopup(changeAvatarPopup);
+}
+
 // Закрытие активного popup.
 const handleClosePopup = () => {
   noticePopupActive === ('popup-add-card') ? handleCloseAddCard() :
   noticePopupActive === ('popup-user-editor') ? handleCloseUserEditor() :
-  noticePopupActive === ('popup-view-image') && closePopup(largeImagePopup);
+  noticePopupActive === ('popup-change-avatar') ? handleCloseChangeAvatar() :
+  noticePopupActive === ('popup-view-image') ? closePopup(largeImagePopup) :
+  noticePopupActive === ('popup-confirm-delete') && closePopup(confirmDeleteCardPopup);
   document.removeEventListener('keydown', handleClosePopupEsc);
 }
 
