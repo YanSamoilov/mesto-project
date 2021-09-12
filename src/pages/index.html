@@ -11,15 +11,21 @@
   <header class="header page__section">
     <a href="#" class="header__logo"></a>
   </header>
-  <main>
+  <main id="main">
+    <div class="preloader">
+      <div class="preloader__circle"></div>
+    </div>
     <section class="profile page__section">
-      <img src="<%=require('../images/Avatar.png')%>" alt="Аватар пользователя в круглой рамке." class="profile__avatar">
+      <div class="profile__avatar-container">
+        <button type="button" aria-label="Изменение аватара пользователя" class="profile__change-avatar"></button>
+        <img src="" alt="Аватар пользователя в круглой рамке." class="profile__avatar">
+      </div>
       <div class="profile__user">
         <div class="profile__user-wrapper">
-          <h1 class="profile__user-name">Жак-Ив Кусто</h1>
+          <h1 class="profile__user-name"></h1>
           <button type="button" class="profile__user-edit" aria-label="Изменение профиля пользователя."></button>
         </div>
-        <p class="profile__user-action">Исследователь океана</p>
+        <p class="profile__user-action"></p>
       </div>
         <button type="button" class="profile__add-card" aria-label="Добавить место в коллекцию."></button>
     </section>
@@ -68,6 +74,19 @@
       </fieldset>
     </form>
   </div>
+  <div class="popup" id="popup-change-avatar">
+    <form action="POST" class="popup__main-container" id="popup-change-avatar-container" name="avatar" novalidate>
+      <button type="button" class="popup__close" id="change-avatar-close" aria-label="Закрыть окно смены аватара."></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <fieldset class="popup__edit-container">
+        <label for="avatar-url" class="popup__label">
+          <input type="url" name="avatar-url" placeholder="Ссылка на картинку" class="popup__form" id="avatar-url" required>
+          <span class="popup__error avatar-url-error"></span>
+        </label>
+        <button type="submit" class="popup__button-save" aria-label="Обновить аватар.">Сохранить</button>
+      </fieldset>
+    </form>
+  </div>
   <div class="popup" id="popup-view-image">
     <figure class="popup__figure-image">
       <img src="" alt="" class="popup__larger-image">
@@ -75,13 +94,23 @@
       <button type="button" class="popup__close" id="close-larger-image" aria-label="Закрыть окно просмотра изображения карточки."></button>
     </figure>
   </div>
+  <div class="popup" id="popup-confirm-delete">
+    <div class="popup__main-container">
+      <button type="button" class="popup__close" id="confirm-delete-close" aria-label="Закрыть окно подтверждения удаления карточки."></button>
+      <h3 class="popup__title popup__title_without-input">Вы уверены?</h3>
+      <button type="submit" class="popup__button-save popup__button-save_without-input" id="button-confirm-delete-card" aria-label="Подтвердить удаление карточки.">Да</button>
+    </div>
+  </div>
   <template id="card-template">
     <li class="cards__list-elem">
       <img src="" alt="" class="cards__image">
       <button type="button" class="cards__button-bin" aria-label="Удалить карточку места."></button>
       <div class="cards__wrapper">
         <h2 class="cards__title"></h2>
-        <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
+        <div class="cards__like-container">
+          <button type="button" class="cards__like" aria-label="Отметить понравившееся место."></button>
+          <span class="cards__like-num"></span>
+        </div>
       </div>
     </li>
   </template>
