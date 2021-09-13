@@ -17,13 +17,13 @@ const setNewUserInfo = (newUserName, newUserActivity, nameArea, activityArea, us
   setButtonSubmitCondition(actualButton, false);
   patchUserProfile(newUserName, newUserActivity)
   .then ((data) => {
+    closePopup(popup);
     setUserInfo(nameArea, activityArea, userAvatar, data);
   })
   .catch((err) => {
     console.log(err);
   })
   .finally(() => {
-    closePopup(popup);
     setButtonSubmitCondition(actualButton, true);
   })
 }
@@ -35,13 +35,13 @@ const setNewAvatar = (avatarURL, popup, avatar) => {
   patchAvatar(avatarURL)
   .then((data) => {
     avatar.src = data.avatar;
+    closePopup(popup);
+    changeAvatarForm.reset();
   })
   .catch((err) => {
     console.log(err);
   })
   .finally(() => {
-    closePopup(popup);
-    changeAvatarForm.reset();
     setButtonSubmitCondition(actualButton, true);
   })
 }

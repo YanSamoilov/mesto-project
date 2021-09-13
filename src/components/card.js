@@ -50,12 +50,10 @@ const handleDeleteCard = (cardTarget) => {
   deleteCard(cardTarget.id)
     .then(() => {
       cardTarget.remove();
+      closePopup(confirmDeleteCardPopup);
     })
     .catch((err) => {
       console.log(err);
-    })
-    .finally(() => {
-      closePopup(confirmDeleteCardPopup);
     })
 }
 
@@ -69,13 +67,13 @@ const submitFormNewCard = (event) => {
   addCard(nameCard, linkCard)
     .then((res) => {
       cardsList.prepend(createCard(res, res.owner._id));
+      closePopup(cardAddPopup);
+      addCardForm.reset();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      closePopup(cardAddPopup);
-      addCardForm.reset();
       setButtonSubmitCondition(actualButton, true);
     })
 }

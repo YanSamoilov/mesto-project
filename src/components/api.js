@@ -25,9 +25,7 @@ const patchAvatar = (avatarURL) => {
       avatar: avatarURL
     })
   })
-    .then((res) => {
-      return checkResponse(res);
-    })
+    .then(checkResponse)
 }
 
 //Отправить запрос на отмену лайка
@@ -38,9 +36,7 @@ const deleteLikeRequest = (cardId) => {
       authorization: token
     }
   })
-    .then((res) => {
-      return checkResponse(res);
-    })
+    .then(checkResponse)
 }
 
 //Отправить запрос на постановку лайка
@@ -51,9 +47,7 @@ const putLike = (cardId) => {
       authorization: token
     }
   })
-    .then((res) => {
-      return checkResponse(res);
-    })
+    .then(checkResponse)
 }
 
 const getInfoArray = () => {
@@ -68,9 +62,7 @@ const getUserInfo = () => {
       authorization: token
     }
   })
-    .then((res) => {
-      return checkResponse(res);
-    })
+    .then(checkResponse)
 }
 
 //Получение массива карточек с сервера
@@ -80,9 +72,7 @@ const getCardslist = () => {
       authorization: token
     }
   })
-    .then((res) => {
-      return checkResponse(res);
-    })
+    .then(checkResponse)
 }
 
 //Редактирование профиля
@@ -98,9 +88,7 @@ const patchUserProfile = (newUserName, newUserActivity) => {
       about: newUserActivity
     })
   })
-    .then((res) => {
-      return checkResponse(res);
-    })
+    .then(checkResponse)
 }
 
 //Добавление новой карточки
@@ -116,9 +104,7 @@ const addCard = (nameCard, linkCard) => {
       link: linkCard
     })
   })
-    .then((res) => {
-      return checkResponse(res);
-    })
+    .then(checkResponse)
 }
 
 //Удаление карточки

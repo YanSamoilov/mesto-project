@@ -23,7 +23,7 @@ const hidePreloader = () => {
 //Изменить состояние кнопки сохранить
 const setButtonSubmitCondition = (button, active) => {
   button.disabled = !active;
-  active ? button.textContent = "Сохранить" : button.textContent = "Сохранение...";
+  button.textContent = active ? "Сохранить" : button.textContent = "Сохранение...";
 }
 
 //Добавить слушатель удаления на карточку
