@@ -1,6 +1,8 @@
+// export {toggleCardsBin, addButtonBinCard, markLikedCard, addLike, deleteLike, setButtonSubmitCondition, hidePreloader, confirmDeleteCardPopup, cardTarget};
+// import {putLike, deleteLikeRequest} from './Api.js';
+// import { openPopup } from './modal.js';
+
 export {toggleCardsBin, addButtonBinCard, markLikedCard, addLike, deleteLike, setButtonSubmitCondition, hidePreloader, confirmDeleteCardPopup, cardTarget};
-import {putLike, deleteLikeRequest} from './api.js';
-import { openPopup } from './modal.js';
 
 const confirmDeleteCardPopup = document.querySelector('#popup-confirm-delete');
 let cardTarget;

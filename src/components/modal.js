@@ -1,10 +1,10 @@
-export {handleOpenUserEditor, submitFormProfile, handleClosePopup, openPopup, handleOpenImagePopup, closePopup, cardAddPopup, nameUser, activityUser,
-  changeAvatarPopup, submitNewAvatar};
-import {largeImagePopup} from './card.js';
-import {userEditorForm, addCardForm, avatar, changeAvatarForm} from '../pages/index.js';
-import {resetValidation} from './validation.js';
-import {setNewUserInfo, setNewAvatar} from './user.js';
-import {confirmDeleteCardPopup} from './util.js'
+// export {handleOpenUserEditor, submitFormProfile, handleClosePopup, openPopup, handleOpenImagePopup, closePopup, cardAddPopup, nameUser, activityUser,
+//   changeAvatarPopup, submitNewAvatar};
+// import {largeImagePopup} from './Card.js';
+// import {userEditorForm, addCardForm, avatar, changeAvatarForm} from '../pages/index.js';
+// import {resetValidation} from './validation.js';
+// import {setNewUserInfo, setNewAvatar} from './user.js';
+// import {confirmDeleteCardPopup} from './util.js'
 
 let noticePopupActive;
 const nameForInput = document.querySelector('#user-name');              // Введенное имя пользователя в окне редактирования.

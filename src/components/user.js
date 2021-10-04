@@ -1,8 +1,8 @@
-export {setUserInfo, setNewUserInfo, setNewAvatar};
-import {patchUserProfile, patchAvatar} from './api.js';
-import {closePopup} from './modal.js';
-import {changeAvatarForm} from '../pages/index.js';
-import {setButtonSubmitCondition} from './util.js';
+// export {setUserInfo, setNewUserInfo, setNewAvatar};
+// import {patchUserProfile, patchAvatar} from './Api.js';
+// import {closePopup} from './modal.js';
+// import {changeAvatarForm} from '../pages/index.js';
+// import {setButtonSubmitCondition} from './util.js';
 
 //Отображение данных пользователя
 const setUserInfo = (nameArea, activityArea, userAvatar, data) => {

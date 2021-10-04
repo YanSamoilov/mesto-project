@@ -1,4 +1,4 @@
-export {enableValidationForms, resetValidation};
+// export {enableValidationForms, resetValidation};
 
 // Отображать ошибку при заполнении формы
 const showError = (formElem, inputElem, errorMessage, formsData) => {
