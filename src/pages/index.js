@@ -3,10 +3,15 @@ import {Api} from '../components/Api.js';
 import {Section} from '../components/Section.js';
 import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
+import {FormValidator} from '../components/FormValidator.js';
+import {userEditPopup, cardAddPopup } from '../components/modal.js';
+
 import {
   token,
-  serverURL
+  serverURL,
+  defaultFormConfig,
 } from '../utils/constants.js'
+import FormValidator from '../components/FormValidator';
 
 const api = new Api(token, serverURL); // создаем объект api и он будет везде участвовать по идее.
 
@@ -97,3 +102,13 @@ api.getInfoArray()                //Получаем стартовые данн
 //   inputErrorClass: 'popup__form_type_error',
 //   errorClass: 'popup__error_active'
 // });
+
+
+//Валидируем формы 
+
+//Создаем instan's валидации форм профиля и карточек
+const editFormValidator = new FormValidator(defaultFormConfig, userEditPopup);
+const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopup);
+
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
