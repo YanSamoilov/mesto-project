@@ -9,4 +9,4 @@ export const defaultFormConfig = {
     inputErrorClass:  'popup__form_type_error',
     errorClass:'popup__error_active'
   };
-  
+

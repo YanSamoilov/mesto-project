@@ -4,7 +4,7 @@ import {Section} from '../components/Section.js';
 import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {userEditPopup, cardAddPopup } from '../components/modal.js';
+import {userEditPopup, cardAddPopup, changeAvatarPopup} from '../components/modal.js';
 
 import {
   token,
@@ -35,7 +35,10 @@ api.getInfoArray()                //Получаем стартовые данн
     hidePreloader();
   })
 
-
+  const user = new UserInfo({
+    'profileName': profileTitle,
+    'profileDescription': profileDescription
+  });
 
 // export {userEditorForm, addCardForm, cardsList, avatar, changeAvatarForm};
 // import {submitFormNewCard, largeImagePopup, loadCards, handleDeleteCard} from '../components/card.js';
@@ -105,9 +108,22 @@ api.getInfoArray()                //Получаем стартовые данн
 
 //Валидируем формы
 
-//Создаем instan's валидации форм профиля и карточек
-const editFormValidator = new FormValidator(defaultFormConfig, userEditPopup);
-const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopup);
+// Находим формы для каждого popup
+const userEditorPopupForm = userEditPopup.querySelector('.popup__main-container');
+const cardAddPopupForm = cardAddPopup.querySelector('.popup__main-container');
+const userEditorPopupForm = changeAvatarPopup.querySelector('.popup__main-container');
+
+//Создаем instan's класса FormValidator с передачей нужных форм и дефолтного объекта настроек.
+
+const editFormValidator = new FormValidator(defaultFormConfig, userEditorPopupForm);
+const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopupForm);
+const editAvatarValidator = new FormValidator(defaultFormConfig, userEditorPopupForm)
 
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+editAvatarValidator.enableValidation();
+
+//editFormValidator.setInitialState(); вызываем при открытии popup редактирования
+//cardFormValidator.enableValidation(); вызываем при открытии popup добавления карточки
+//editAvatarValidator.enableValidation(); вызываем при открытии popup редактирования аватарки
+
