@@ -1,4 +1,5 @@
 export {Card}
+import PopupWithImage from '../components/PopupWithImage.js';
 
 //Класс пока не принимает функции по открытию попапа большой картинки как это требуется в задании. Надеюсь, что его не сложно будет вставить позже))
 class Card {
@@ -73,6 +74,11 @@ class Card {
   _setEventListeners() {
     this._element.querySelector('.cards__like').addEventListener('click', () => {
       this._handleClickLikeCard();
+    })
+
+    this._element.querySelector('.cards__image').addEventListener('click', () => {
+      const popupWithImage = new PopupWithImage('#popup-view-image', this.link, this.name)
+      popupWithImage.open();
     })
   }
 }

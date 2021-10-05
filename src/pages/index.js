@@ -3,8 +3,9 @@ import {Api} from '../components/Api.js';
 import {Section} from '../components/Section.js';
 import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
-import {FormValidator} from '../components/FormValidator.js';
+import FormValidator from '../components/FormValidator.js';
 import {userEditPopup, cardAddPopup, changeAvatarPopup} from '../components/modal.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 import {
   token,
@@ -13,6 +14,7 @@ import {
 } from '../utils/constants.js'
 
 const api = new Api(token, serverURL); // создаем объект api и он будет везде участвовать по идее.
+
 
 api.getInfoArray()                //Получаем стартовые данные с сервера
   .then(([userInfo, cards]) => {
@@ -35,10 +37,37 @@ api.getInfoArray()                //Получаем стартовые данн
     hidePreloader();
   })
 
-  const user = new UserInfo({
-    'profileName': profileTitle,
-    'profileDescription': profileDescription
-  });
+  // const user = new UserInfo({
+  //   'profileName': profileTitle,
+  //   'profileDescription': profileDescription
+  // });
+
+
+//Валидируем формы
+
+// Находим формы для каждого popup
+// const userEditorPopupForm = userEditPopup.querySelector('.popup__main-container');
+// const cardAddPopupForm = cardAddPopup.querySelector('.popup__main-container');
+// const userEditorPopupForm = changeAvatarPopup.querySelector('.popup__main-container');
+
+//Создаем instan's класса FormValidator с передачей нужных форм и дефолтного объекта настроек.
+
+// const editFormValidator = new FormValidator(defaultFormConfig, userEditorPopupForm);
+// const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopupForm);
+// const editAvatarValidator = new FormValidator(defaultFormConfig, userEditorPopupForm)
+
+// editFormValidator.enableValidation();
+// cardFormValidator.enableValidation();
+// editAvatarValidator.enableValidation();
+
+//editFormValidator.setInitialState(); вызываем при открытии popup редактирования
+//cardFormValidator.enableValidation(); вызываем при открытии popup добавления карточки
+//editAvatarValidator.enableValidation(); вызываем при открытии popup редактирования аватарки
+
+
+
+//Это все ниже старый код потом для удаления-------------------------------------------
+//===============================================================
 
 // export {userEditorForm, addCardForm, cardsList, avatar, changeAvatarForm};
 // import {submitFormNewCard, largeImagePopup, loadCards, handleDeleteCard} from '../components/card.js';
@@ -104,26 +133,3 @@ api.getInfoArray()                //Получаем стартовые данн
 //   inputErrorClass: 'popup__form_type_error',
 //   errorClass: 'popup__error_active'
 // });
-
-
-//Валидируем формы
-
-// Находим формы для каждого popup
-const userEditorPopupForm = userEditPopup.querySelector('.popup__main-container');
-const cardAddPopupForm = cardAddPopup.querySelector('.popup__main-container');
-const userEditorPopupForm = changeAvatarPopup.querySelector('.popup__main-container');
-
-//Создаем instan's класса FormValidator с передачей нужных форм и дефолтного объекта настроек.
-
-const editFormValidator = new FormValidator(defaultFormConfig, userEditorPopupForm);
-const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopupForm);
-const editAvatarValidator = new FormValidator(defaultFormConfig, userEditorPopupForm)
-
-editFormValidator.enableValidation();
-cardFormValidator.enableValidation();
-editAvatarValidator.enableValidation();
-
-//editFormValidator.setInitialState(); вызываем при открытии popup редактирования
-//cardFormValidator.enableValidation(); вызываем при открытии popup добавления карточки
-//editAvatarValidator.enableValidation(); вызываем при открытии popup редактирования аватарки
-
