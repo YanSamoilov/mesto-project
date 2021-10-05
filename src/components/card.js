@@ -2,13 +2,15 @@ export {Card}
 
 //Класс пока не принимает функции по открытию попапа большой картинки как это требуется в задании. Надеюсь, что его не сложно будет вставить позже))
 class Card {
-  constructor({name, link, likes, owner}, userId, selector) {
+  constructor({name, link, likes, owner, _id}, userId, api, selector) {
     this.name = name;           //Название карточки
     this.link = link;           //Ссылка на картинку
     this.likes = likes;         //Массив с лайками
     this.selector = selector;   //Селектор шаблона
     this.userId = userId;       //Id активного юзера
     this.owner = owner._id;     //Id хозяина карточки для постановки корзины, потом понадобится
+    this.api = api;
+    this._id = _id;             //Id карточки для лайка
   }
 
   //Получить элемент шаблона карточки
@@ -24,11 +26,54 @@ class Card {
 
   generate() {
     this._element = this._getElement();
+
+    this._setEventListeners();
+    this._markLikedCard();
+
     this._element.querySelector('.cards__title').textContent = this.name;
     this._element.querySelector('.cards__image').src = this.link;
     this._element.querySelector('.cards__like-num').textContent = this.likes.length;
 
     return this._element;
+  }
+
+  _handleClickLikeCard() {
+    const likeImage = this._element.querySelector('.cards__like');
+    const likeCount = this._element.querySelector('.cards__like-num');
+
+    if(!likeImage.classList.contains('cards__like_active')) {
+      this.api.putLike(this._id)
+        .then((data) => {
+          likeCount.textContent = data.likes.length;
+          likeImage.classList.add('cards__like_active');
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+    else {
+      this.api.deleteLikeRequest(this._id)
+        .then((data) => {
+          likeCount.textContent = data.likes.length;
+          likeImage.classList.remove('cards__like_active');
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }
+
+  _markLikedCard() {
+    const likeElem = this._element.querySelector('.cards__like');
+    if(this.likes.some(like => like._id === this.userId)) {
+      likeElem.classList.add('cards__like_active');
+    }
+  }
+
+  _setEventListeners() {
+    this._element.querySelector('.cards__like').addEventListener('click', () => {
+      this._handleClickLikeCard();
+    })
   }
 }
 

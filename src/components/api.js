@@ -39,6 +39,28 @@ class Api {
   getInfoArray() {
     return Promise.all([this._getUserInfo(), this._getCardslist()])
   }
+
+  //Отправить запрос на отмену лайка
+  deleteLikeRequest = (cardId) => {
+    return fetch(`${this.serverURL}cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this.token
+      }
+    })
+      .then(this._checkResponse)
+  }
+
+//Отправить запрос на постановку лайка
+  putLike = (cardId) => {
+    return fetch(`${this.serverURL}cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: {
+        authorization: this.token
+      }
+    })
+      .then(this._checkResponse)
+  }
 }
 
 
