@@ -11,7 +11,6 @@ import {
   serverURL,
   defaultFormConfig,
 } from '../utils/constants.js'
-import FormValidator from '../components/FormValidator';
 
 const api = new Api(token, serverURL); // создаем объект api и он будет везде участвовать по идее.
 
@@ -22,7 +21,7 @@ api.getInfoArray()                //Получаем стартовые данн
     const cardList = new Section ({     //Объект класса section для отрисовки стартовых карточек. Создается, если сервер вернул данные.
       items: cards,
       renderer: (item) => {
-        const card = new Card(item, userId, '#card-template');
+        const card = new Card(item, userId, api, '#card-template');
         const cardElement = card.generate();
         cardList.addItem(cardElement);      //Вот 22 и 25 строку я сделал по коду из тренажера и совсем не понимаю, что тут происходит, но работает. Если кто объяснит, буду премного благодарен))
       }
@@ -104,7 +103,7 @@ api.getInfoArray()                //Получаем стартовые данн
 // });
 
 
-//Валидируем формы 
+//Валидируем формы
 
 //Создаем instan's валидации форм профиля и карточек
 const editFormValidator = new FormValidator(defaultFormConfig, userEditPopup);

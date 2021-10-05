@@ -1,3 +1,5 @@
+export {FormValidator}
+
 class FormValidator {
     constructor(config, popupItem) {
         this.inputSelector = config.inputSelector
@@ -14,7 +16,7 @@ class FormValidator {
         } else {
             this._hideError(inputElement);
         }
-            
+
     }
 
     _showError(inputElement, errorMessage) {
@@ -34,7 +36,7 @@ class FormValidator {
     _toggleSubmitActivity(){
         if(this._hasInvalidInput()) {
             this._buttonElement.classList.add(this._inactiveButtonClass);
-            this._buttonElement.disabled = true;    
+            this._buttonElement.disabled = true;
         } else {
         this._buttonElement.classList.remove(this._inactiveButtonClass);
         this._buttonElement.disabled = false;
@@ -66,5 +68,3 @@ class FormValidator {
         this._setEventListener();
     }
 }
-
-export default FormValidator
