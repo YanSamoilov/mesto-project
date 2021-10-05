@@ -6,4 +6,10 @@ class PopupWithForm extends Popup {
 
 
   }
+
+  _getInputValues () {
+
+  }
+
+
 }
