@@ -6,8 +6,8 @@ export default class User {
   }
   getUser(){
     return {name: this._name.textContent,
-            description: this._description.textContent}
-            }
+      description: this._description.textContent}
+  }
 
   getUserAvatar() {
     return this._avatar.src;

@@ -5,7 +5,7 @@ import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
-import { userEditPopupForm, cardAddPopup, changeAvatarPopup
+import { userEditPopup, userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit, nameUser, activityUser
 } from '../utils/constants.js';
 
 import {
@@ -13,6 +13,8 @@ import {
   serverURL,
   defaultFormConfig,
 } from '../utils/constants.js'
+import PopupWithForm from '../components/PopupWithForm';
+import User from '../components/UserInfo.js';
 
 const api = new Api(token, serverURL); // создаем объект api и он будет везде участвовать по идее.
 
@@ -41,10 +43,8 @@ api.getInfoArray()                //Получаем стартовые данн
     hidePreloader();
   })
 
-  // const user = new UserInfo({
-  //   'profileName': profileTitle,
-  //   'profileDescription': profileDescription
-  // });
+  //Создаем объекет юзера
+  const user = new User ({nameUser, activityUser});
 
 
 //Валидируем формы
@@ -56,6 +56,12 @@ const editAvatarValidator = new FormValidator(defaultFormConfig, changeAvatarPop
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
+
+const popupProfile = new PopupWithForm(userEditPopup, user.setUserInfo(data))
+buttonUserEdit.addEventListener('click', () => {
+  popupProfile.open();
+})
+
 
 //editFormValidator.setInitialState(); //вызываем при открытии popup редактирования
 //cardFormValidator.setInitialState(); //вызываем при открытии popup добавления карточки
