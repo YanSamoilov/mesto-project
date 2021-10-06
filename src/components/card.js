@@ -1,9 +1,8 @@
 export {Card}
-import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithImage from './PopupWithImage.js';
 
-//Класс пока не принимает функции по открытию попапа большой картинки как это требуется в задании. Надеюсь, что его не сложно будет вставить позже))
 class Card {
-  constructor({name, link, likes, owner, _id}, userId, api, selector) {
+  constructor({name, link, likes, owner, _id}, userId, api, selector, handleCardClick) {
     this.name = name;           //Название карточки
     this.link = link;           //Ссылка на картинку
     this.likes = likes;         //Массив с лайками
@@ -12,6 +11,7 @@ class Card {
     this.owner = owner._id;     //Id хозяина карточки для постановки корзины, потом понадобится
     this.api = api;
     this._id = _id;             //Id карточки для лайка
+    this.handleCardClick = handleCardClick;
   }
 
   //Получить элемент шаблона карточки
@@ -77,12 +77,12 @@ class Card {
     })
 
     this._element.querySelector('.cards__image').addEventListener('click', () => {
-      const popupWithImage = new PopupWithImage('#popup-view-image', this.link, this.name)
-      popupWithImage.open();
+      this.handleCardClick();
     })
   }
 }
 
+//Ниже старый код на удаление=================================================================================
 
 // export {createCard, submitFormNewCard, handleDeleteCard, largeImagePopup, loadCards};
 // import {handleOpenImagePopup, closePopup, cardAddPopup} from './modal.js';

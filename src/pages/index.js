@@ -3,9 +3,9 @@ import {Api} from '../components/Api.js';
 import {Section} from '../components/Section.js';
 import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 import {userEditPopup, cardAddPopup, changeAvatarPopup} from '../components/modal.js';
-import PopupWithImage from '../components/PopupWithImage.js';
 
 import {
   token,
@@ -15,7 +15,6 @@ import {
 
 const api = new Api(token, serverURL); // создаем объект api и он будет везде участвовать по идее.
 
-
 api.getInfoArray()                //Получаем стартовые данные с сервера
   .then(([userInfo, cards]) => {
     const userId = userInfo._id;
@@ -23,9 +22,13 @@ api.getInfoArray()                //Получаем стартовые данн
     const cardList = new Section ({     //Объект класса section для отрисовки стартовых карточек. Создается, если сервер вернул данные.
       items: cards,
       renderer: (item) => {
-        const card = new Card(item, userId, api, '#card-template');
+        const card = new Card(item, userId, api, '#card-template', () => {
+          const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
+          popupWithImage.setEventListeners();
+          popupWithImage.open();
+        });
         const cardElement = card.generate();
-        cardList.addItem(cardElement);      //Вот 22 и 25 строку я сделал по коду из тренажера и совсем не понимаю, что тут происходит, но работает. Если кто объяснит, буду премного благодарен))
+        cardList.addItem(cardElement);
       }
     }, '.cards__list');
     cardList.renderedItems();
