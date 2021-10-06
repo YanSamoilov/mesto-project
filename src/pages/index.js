@@ -5,7 +5,8 @@ import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
-import {userEditPopup, cardAddPopup, changeAvatarPopup} from '../components/modal.js';
+import { userEditPopupForm, cardAddPopup, changeAvatarPopup
+} from '../utils/constants.js';
 
 import {
   token,
@@ -48,25 +49,17 @@ api.getInfoArray()                //Получаем стартовые данн
 
 //Валидируем формы
 
-// Находим формы для каждого popup
-// const userEditorPopupForm = userEditPopup.querySelector('.popup__main-container');
-// const cardAddPopupForm = cardAddPopup.querySelector('.popup__main-container');
-// const userEditorPopupForm = changeAvatarPopup.querySelector('.popup__main-container');
+const editFormValidator = new FormValidator(defaultFormConfig, userEditPopupForm);
+const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopup);
+const editAvatarValidator = new FormValidator(defaultFormConfig, changeAvatarPopup)
 
-//Создаем instan's класса FormValidator с передачей нужных форм и дефолтного объекта настроек.
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+editAvatarValidator.enableValidation();
 
-// const editFormValidator = new FormValidator(defaultFormConfig, userEditorPopupForm);
-// const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopupForm);
-// const editAvatarValidator = new FormValidator(defaultFormConfig, userEditorPopupForm)
-
-// editFormValidator.enableValidation();
-// cardFormValidator.enableValidation();
-// editAvatarValidator.enableValidation();
-
-//editFormValidator.setInitialState(); вызываем при открытии popup редактирования
-//cardFormValidator.enableValidation(); вызываем при открытии popup добавления карточки
-//editAvatarValidator.enableValidation(); вызываем при открытии popup редактирования аватарки
-
+//editFormValidator.setInitialState(); //вызываем при открытии popup редактирования
+//cardFormValidator.setInitialState(); //вызываем при открытии popup добавления карточки
+//editAvatarValidator.setInitialState(); //вызываем при открытии popup редактирования аватарки
 
 
 //Это все ниже старый код потом для удаления-------------------------------------------
