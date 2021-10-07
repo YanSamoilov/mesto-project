@@ -16,10 +16,12 @@ export const changeAvatarPopup = document.querySelector('#popup-change-avatar')
 export const changeAvatarPopupForm = changeAvatarPopup.querySelector('#popup-change-avatar-container');
 
 export const buttonUserEdit = document.querySelector('.profile__user-edit');        // Кнопка открытия редактирования профиля.
-export const buttonUserEditorClose = document.querySelector('#user-editor-close');  // Кнопка закрытия редактирования профиля. 
+export const buttonUserEditorClose = document.querySelector('#user-editor-close');  // Кнопка закрытия редактирования профиля.
 
 
 export const nameForInput = document.querySelector('#user-name');              // Введенное имя пользователя в окне редактирования.
 export const nameUser = document.querySelector('.profile__user-name');         // Имя пользователя на странице.
 export const activityForInput = document.querySelector('#user-activity');      // Введенное работа пользователя в окне редактирования.
 export const activityUser = document.querySelector('.profile__user-action');
+export const avatar = document.querySelector('.profile__avatar');
+export const changeAvatar = document.querySelector('.profile__change-avatar')

@@ -1,44 +1,30 @@
 export default class User {
-  constructor({profileName, profileDescription, profileAvatar}, getDataFromServer, sendDataToServer) {
-    this._name = profileName;
-    this._description = profileDescription;
-    this._avatar = profileAvatar;
+  constructor(userSelect) {
+    this._name = userSelect.name;
+    this._description = userSelect.description;
+    this._avatar = userSelect.avatar;
   }
+  //Инициализация значений данных о юзере для предзаполнения полей данных
   getUser(){
-    return {name: this._name.textContent,
-      description: this._description.textContent}
+    this._userData = {
+      name: this._name.textContent,
+      description: this._description.textContent
+    }
+    return this._userData;
   }
 
   getUserAvatar() {
     return this._avatar.src;
   }
-
-
-  getUserInfo() {
-    getDataFromServer()
-    .then ((data) => {
-      return data;
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  //Инициализация значений данных о юзере на странице (рендеринг данных из сервера)
+  setUserInfo(data) {
+    this._name.textContent = data.name;
+    this._description.textContent = data.description;
+    this._setUserAvatar(data)
   }
 
-
-  setUserInfo({name, description}) {
-    sendDataToServer(name,description)
-    .then ((data) => {
-      this._name.textContent = data.name;
-      this._description.textContent = data.about;
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
-
-  setUserAvatar(url) {
-    this._avatar.src = url;
+  setUserAvatar(data) {
+    this._avatar.src = data.avatar;
   }
 }
-
 
