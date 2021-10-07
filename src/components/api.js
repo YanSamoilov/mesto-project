@@ -76,9 +76,22 @@ class Api {
     })
     .then(this._checkResponse)
   }
+
+
+setUserAvatarToServer(data) {
+  return fetch(`${serverURL}users/me/avatar`, {
+    method: 'PATCH',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+         },
+      body: JSON.stringify({
+        avatar: data.avatar,
+      })
+    })
+    .then(checkResponse)
+  }
 }
-
-
 
 // export {getCardslist, addCard, deleteCard, getUserInfo, patchUserProfile, getInfoArray, putLike, deleteLikeRequest, patchAvatar};
 
