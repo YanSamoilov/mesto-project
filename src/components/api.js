@@ -61,6 +61,21 @@ class Api {
     })
       .then(this._checkResponse)
   }
+
+  patchUserProfile (newUserName, newUserActivity) {
+    return fetch(`${this.serverURL}users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: newUserName,
+        about: newUserActivity
+      })
+    })
+    .then(this._checkResponse)
+  }
 }
 
 

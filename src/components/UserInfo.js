@@ -1,5 +1,5 @@
 export default class User {
-  constructor({profileName, profileDescription, profileAvatar}) {
+  constructor({profileName, profileDescription, profileAvatar}, getDataFromServer, sendDataToServer) {
     this._name = profileName;
     this._description = profileDescription;
     this._avatar = profileAvatar;
@@ -13,9 +13,27 @@ export default class User {
     return this._avatar.src;
   }
 
+
+  getUserInfo() {
+    getDataFromServer()
+    .then ((data) => {
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+
   setUserInfo({name, description}) {
-    this._name.textContent = name;
-    this._description.textContent = description;
+    sendDataToServer(name,description)
+    .then ((data) => {
+      this._name.textContent = data.name;
+      this._description.textContent = data.about;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   setUserAvatar(url) {
