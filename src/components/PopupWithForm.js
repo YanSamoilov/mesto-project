@@ -10,7 +10,6 @@ class PopupWithForm extends Popup {
 
   //получаем данные из полей ввода
   _getInputValues () {
-
     this._dataSet = {};
     this._inputsArray.forEach(item => {
       this._dataSet[item.name] = item.value;
@@ -19,9 +18,9 @@ class PopupWithForm extends Popup {
   }
 
   //Слушатель на кнопке submit
-  _setEventListeners() {
+  setEventListeners() {
     super.setEventListeners()
-    this._popup.addEventListeners('submit', evt => {
+    this.popup.addEventListeners('submit', (evt) => {
       evt.preventDefault();
       this._formSubmit(this._getInputValues());
       this.close();
