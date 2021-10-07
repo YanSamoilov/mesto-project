@@ -5,8 +5,9 @@ import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
-import { userEditPopup, userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
-  nameUser, activityUser, nameForInput,activityForInput, avatar, changeAvatar
+import { userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
+  nameUser, activityUser, nameForInput,activityForInput, avatar, changeAvatar,userEditPopupTest,
+  changeAvatarPopupTest
 } from '../utils/constants.js';
 
 import {
@@ -21,31 +22,6 @@ const api = new Api(token, serverURL);
 // создаем объект User и он будет везде участвовать по идее.
 const user = new User ({name: nameUser, description: activityUser, avatar: avatar});
 
-api.getInfoArray()                //Получаем стартовые данные с сервера
-  .then(([userInfo, cards]) => {
-    const userId = userInfo._id;
-    user.setUserInfo(userInfo);
-    const cardList = new Section ({     //Объект класса section для отрисовки стартовых карточек. Создается, если сервер вернул данные.
-      items: cards,
-      renderer: (item) => {
-        const card = new Card(item, userId, api, '#card-template', () => {
-          const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
-          popupWithImage.setEventListeners();
-          popupWithImage.open();
-        });
-        const cardElement = card.generate();
-        cardList.addItem(cardElement);
-      }
-    }, '.cards__list');
-    cardList.renderedItems();
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(() => {
-    hidePreloader();
-  })
-
 //Валидируем формы
 
 const editFormValidator = new FormValidator(defaultFormConfig, userEditPopupForm);
@@ -56,20 +32,20 @@ editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
-const popupEditAvatar = new PopupWithForm(changeAvatarPopup, newData => {
+const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, newData => {
   api.setUserAvatarToServer(newData)
-  .then((data) => {
-    user.setUserAvatar(data)
+  .then((res) => {
+    user.setUserAvatar(res)
     changeAvatarPopup.close()
   })
   .catch((err) => console.log(err))
 })
 popupEditAvatar.setEventListeners()
 
-const popupFormEditProfile = new PopupWithForm(userEditPopup, newData => {
+const popupFormEditProfile = new PopupWithForm(userEditPopupTest, newData => {
   api.patchUserProfile(newData)
   .then((res) => {
-    user.setUserInfo(res)
+  user.setUserInfo(res)
   })
   .catch((err) => console.log(err))
 })
@@ -89,6 +65,31 @@ changeAvatar.addEventListener('click', ()=> {
   editAvatarValidator.setInitialState();
   popupEditAvatar.open();
 })
+
+api.getInfoArray()                //Получаем стартовые данные с сервера
+  .then(([userInfo, cards]) => {
+    const userId = userInfo._id;
+    const cardList = new Section ({     //Объект класса section для отрисовки стартовых карточек. Создается, если сервер вернул данные.
+      items: cards,
+      renderer: (item) => {
+        const card = new Card(item, userId, api, '#card-template', () => {
+          const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
+          popupWithImage.setEventListeners();
+          popupWithImage.open();
+        });
+        const cardElement = card.generate();
+        cardList.addItem(cardElement);
+      }
+    }, '.cards__list');
+    cardList.renderedItems();
+    //user.setUserInfo(userInfo);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  .finally(() => {
+    hidePreloader();
+  })
 //editFormValidator.setInitialState(); //вызываем при открытии popup редактирования
 //cardFormValidator.setInitialState(); //вызываем при открытии popup добавления карточки
 //editAvatarValidator.setInitialState(); //вызываем при открытии popup редактирования аватарки

@@ -19,6 +19,7 @@ class Api {
   //Получение информации о пользователе с сервера
   _getUserInfo() {
     return fetch(`${this.serverURL}users/me`, {
+      method: 'GET',
       headers: {
         authorization: this.token
       }
@@ -29,6 +30,7 @@ class Api {
   //Получение массива карточек с сервера
   _getCardslist() {
     return fetch(`${this.serverURL}cards`, {
+      method: 'GET',
       headers: {
         authorization: this.token
       }
