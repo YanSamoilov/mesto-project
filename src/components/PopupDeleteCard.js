@@ -1,9 +1,8 @@
 import Popup from './Popup.js';
 
 export default class PopupDeleteCard extends Popup {
-  constructor(selector, formSubmitCallback) {
+  constructor(selector) {
     super(selector);
-    this._formSubmit = formSubmitCallback;
     this.confirmDeleteBtn = document.querySelector('#button-confirm-delete-card');
   }
 
@@ -12,7 +11,7 @@ export default class PopupDeleteCard extends Popup {
 
     this.confirmDeleteBtn.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._formSubmit();
+      //this._formSubmit();
     })
   }
 }

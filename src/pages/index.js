@@ -38,9 +38,8 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
               const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
               popupWithImage.open();
             },() => {
-              const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api.deleteCard(item._id));
-              popupDeleteCard.setEventListeners()
-              popupDeleteCard.open();
+              const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete');
+              console.log(popupDeleteCard);
             });
             const cardElement = card.generate();
             cardList.addItem(cardElement);
