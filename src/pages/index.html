@@ -43,12 +43,12 @@
       <h3 class="popup__title">Редактировать профиль</h3>
       <!--<fieldset class="popup__edit-container">-->
         <label for="user-name" class="popup__label">
-          <input type="text" name="user-name" placeholder="Имя" class="popup__form" id="user-name" minlength="2"
+          <input type="text" name="userName" placeholder="Имя" class="popup__form" id="user-name" minlength="2"
           maxlength="40" required>
           <span class="popup__error user-name-error"></span>
         </label>
         <label for="user-activity" class="popup__label">
-          <input type="text" name="user-activity" placeholder="О себе" class="popup__form" id="user-activity"
+          <input type="text" name="userAbout" placeholder="О себе" class="popup__form" id="user-activity"
           minlength="2" maxlength="200" required>
           <span class="popup__error user-activity-error"></span>
         </label>
@@ -80,7 +80,7 @@
       <h3 class="popup__title">Обновить аватар</h3>
       <!--<fieldset class="popup__edit-container">-->
         <label for="avatar-url" class="popup__label">
-          <input type="url" name="avatar-url" placeholder="Ссылка на картинку" class="popup__form" id="avatar-url" required>
+          <input type="url" name="userAvatar" placeholder="Ссылка на картинку" class="popup__form" id="avatar-url" required>
           <span class="popup__error avatar-url-error"></span>
         </label>
         <button type="submit" class="popup__button-save" aria-label="Обновить аватар.">Сохранить</button>

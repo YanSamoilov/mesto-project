@@ -6,7 +6,7 @@ import {hidePreloader} from '../components/util.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 import { userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
-  nameUser, activityUser, nameForInput,activityForInput, avatar, changeAvatar,userEditPopupTest,
+   nameForInput,activityForInput, changeAvatar,userEditPopupTest,
   changeAvatarPopupTest, buttonAddCard
 } from '../utils/constants.js';
 
@@ -18,13 +18,17 @@ import {
 import PopupWithForm from '../components/PopupWithForm';
 import User from '../components/UserInfo.js';
 
-let userId;
+let userId = 0;
 
 // создаем объект api и он будет везде участвовать по идее.
 const api = new Api(token, serverURL);
 console.log(api)
 // создаем объект User и он будет везде участвовать по идее.
-const user = new User ({name: nameUser, description: activityUser, avatar: avatar});
+const user = new User ({
+  name: '.profile__user-name',
+  about: '.profile__user-action',
+  avatar:'.profile__avatar',
+});
 //Создаем объект попап для добавления карточки.
 const popupAddCard = new PopupWithForm('#popup-add-card',
   (dataInputs) => {
@@ -56,21 +60,25 @@ editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
-const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, newData => {
-  api.setUserAvatarToServer(newData)
+const popupEditAvatar = new PopupWithForm('#popup-change-avatar', (newData) => {
+  popupEditAvatar.renderLoading(true)
+  api.patchUserAvatar(newData)
   .then((res) => {
     user.setUserAvatar(res)
-    changeAvatarPopup.close()
   })
   .catch((err) => console.log(err))
+  .finally(() => popupEditAvatar.renderLoading(false))
 })
+popupEditAvatar.setEventListeners();
 
-const popupFormEditProfile = new PopupWithForm(userEditPopupTest, newData => {
+const popupFormEditProfile = new PopupWithForm(userEditPopupTest, (newData) => {
+  popupFormEditProfile.renderLoading(true)
   api.patchUserProfile(newData)
   .then((res) => {
   user.setUserInfo(res)
   })
   .catch((err) => console.log(err))
+  .finally(() => popupFormEditProfile.renderLoading(false))
 })
 //Обновляем данные о юзере на сервере
 popupFormEditProfile.setEventListeners()
@@ -80,7 +88,7 @@ buttonUserEdit.addEventListener('click', () => {
   const userData = user.getUser();
   editFormValidator.setInitialState();
   nameForInput.value = userData.name;
-  activityForInput.value = userData.description;
+  activityForInput.value = userData.about;
   popupFormEditProfile.open();
 })
 
@@ -104,7 +112,7 @@ api.getInfoArray()                //Получаем стартовые данн
       }
     }, '.cards__list');
     cardList.renderedItems();
-    //user.setUserInfo(userInfo);
+    user.setUserInfo(userInfo);
   })
   .catch((err) => {
     console.log(err);

@@ -64,7 +64,7 @@ class Api {
       .then(this._checkResponse)
   }
 
-  patchUserProfile (newUserName, newUserActivity) {
+  patchUserProfile (dataUser) {
     return fetch(`${this.serverURL}users/me`, {
       method: 'PATCH',
       headers: {
@@ -72,14 +72,14 @@ class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: newUserName,
-        about: newUserActivity
+        name: dataUser.userName, //из разметки инпутов
+        about: dataUser.userAbout //из разметки инпутов
       })
     })
     .then(this._checkResponse)
   }
 
-  setUserAvatarToServer(data) {
+  patchUserAvatar(data) {
   return fetch(`${this.serverURL}users/me/avatar`, {
     method: 'PATCH',
     headers: {
@@ -87,7 +87,7 @@ class Api {
       'Content-Type': 'application/json'
     },
       body: JSON.stringify({
-        avatar: data.avatar,
+        avatar: data.userAvatar,
       })
     })
     .then(this._checkResponse)
