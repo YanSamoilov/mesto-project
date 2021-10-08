@@ -4,6 +4,7 @@ import {Section} from '../components/Section.js';
 import {Card} from '../components/Card.js';
 import {hidePreloader} from '../components/util.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import FormValidator from '../components/FormValidator.js';
 import { userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
   nameUser, activityUser, nameForInput,activityForInput, avatar, changeAvatar,userEditPopupTest,
@@ -36,6 +37,10 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
             const card = new Card(item, userId, api, '#card-template', () => {
               const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
               popupWithImage.open();
+            },() => {
+              const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api.deleteCard(item._id));
+              popupDeleteCard.setEventListeners()
+              popupDeleteCard.open();
             });
             const cardElement = card.generate();
             cardList.addItem(cardElement);
