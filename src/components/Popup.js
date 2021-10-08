@@ -5,7 +5,7 @@ class Popup {
 
   open() {
     this.popup.classList.add('popup_active');
-    document.addEventListener('keydown', this._handleClosePopupEsc);
+    this.setEventListeners();
   }
 
   close() {
@@ -16,6 +16,7 @@ class Popup {
   setEventListeners () {
     this.popup.addEventListener('click', this._handleClosePopupOverlay);
     this.popup.querySelector('.popup__close').addEventListener('click', this._handleClosePopupButton);
+    document.addEventListener('keydown', this._handleClosePopupEsc);
   }
 
   _removeEventListeners () {

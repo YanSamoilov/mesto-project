@@ -22,6 +22,7 @@ export const changeAvatarPopupForm = changeAvatarPopup.querySelector('#popup-cha
 
 export const buttonUserEdit = document.querySelector('.profile__user-edit');        // Кнопка открытия редактирования профиля.
 export const buttonUserEditorClose = document.querySelector('#user-editor-close');  // Кнопка закрытия редактирования профиля.
+export const buttonAddCard = document.querySelector('.profile__add-card');          // Кнопка добавления карточки.
 
 // Введенное имя пользователя в окне редактирования.
 export const nameForInput = document.querySelector('#user-name');
@@ -31,4 +32,3 @@ export const changeAvatar = document.querySelector('.profile__change-avatar')
 export const nameUser = '.profile__user-name';
 export const activityUser = '.profile__user-action';
 export const avatar = '.profile__avatar';
-

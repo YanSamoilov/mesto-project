@@ -7,7 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 import { userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
   nameUser, activityUser, nameForInput,activityForInput, avatar, changeAvatar,userEditPopupTest,
-  changeAvatarPopupTest
+  changeAvatarPopupTest, buttonAddCard
 } from '../utils/constants.js';
 
 import {
@@ -17,13 +17,36 @@ import {
 } from '../utils/constants.js'
 import PopupWithForm from '../components/PopupWithForm';
 import User from '../components/UserInfo.js';
+
+let userId;
+
 // создаем объект api и он будет везде участвовать по идее.
 const api = new Api(token, serverURL);
 // создаем объект User и он будет везде участвовать по идее.
 const user = new User ({name: nameUser, description: activityUser, avatar: avatar});
+//Создаем объект попап для добавления карточки.
+const popupAddCard = new PopupWithForm('#popup-add-card',
+  (dataInputs) => {
+    api.addCard(dataInputs)
+      .then((data) => {
+        const cardList = new Section ({
+          items: data,
+          renderer: (item) => {
+            const card = new Card(item, userId, api, '#card-template', () => {
+              const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
+              popupWithImage.open();
+            });
+            const cardElement = card.generate();
+            cardList.addItem(cardElement);
+          }
+        }, '.cards__list');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+})
 
 //Валидируем формы
-
 const editFormValidator = new FormValidator(defaultFormConfig, userEditPopupForm);
 const cardFormValidator = new FormValidator(defaultFormConfig, cardAddPopup);
 const editAvatarValidator = new FormValidator(defaultFormConfig, changeAvatarPopup)
@@ -40,7 +63,6 @@ const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, newData => {
   })
   .catch((err) => console.log(err))
 })
-popupEditAvatar.setEventListeners()
 
 const popupFormEditProfile = new PopupWithForm(userEditPopupTest, newData => {
   api.patchUserProfile(newData)
@@ -68,13 +90,12 @@ changeAvatar.addEventListener('click', ()=> {
 
 api.getInfoArray()                //Получаем стартовые данные с сервера
   .then(([userInfo, cards]) => {
-    const userId = userInfo._id;
-    const cardList = new Section ({     //Объект класса section для отрисовки стартовых карточек. Создается, если сервер вернул данные.
+    userId = userInfo._id;
+    const cardList = new Section ({
       items: cards,
       renderer: (item) => {
         const card = new Card(item, userId, api, '#card-template', () => {
           const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
-          popupWithImage.setEventListeners();
           popupWithImage.open();
         });
         const cardElement = card.generate();
@@ -90,6 +111,10 @@ api.getInfoArray()                //Получаем стартовые данн
   .finally(() => {
     hidePreloader();
   })
+
+//Кнопка открытия добавления карточки
+buttonAddCard.addEventListener('click', () => popupAddCard.open());
+
 //editFormValidator.setInitialState(); //вызываем при открытии popup редактирования
 //cardFormValidator.setInitialState(); //вызываем при открытии popup добавления карточки
 //editAvatarValidator.setInitialState(); //вызываем при открытии popup редактирования аватарки

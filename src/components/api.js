@@ -79,19 +79,34 @@ class Api {
     .then(this._checkResponse)
   }
 
-
 setUserAvatarToServer(data) {
-  return fetch(`${serverURL}users/me/avatar`, {
+  return fetch(`${this.serverURL}users/me/avatar`, {
     method: 'PATCH',
     headers: {
-      authorization: token,
+      authorization: this.token,
       'Content-Type': 'application/json'
-         },
+    },
       body: JSON.stringify({
         avatar: data.avatar,
       })
     })
-    .then(checkResponse)
+    .then(this._checkResponse)
+  }
+
+  //Добавление новой карточки
+  addCard = (data) => {
+    return fetch(`${this.serverURL}cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this.token,
+        'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+        name: data["card-title"],
+        link: data["image-url"]
+      })
+    })
+      .then(this._checkResponse)
   }
 }
 

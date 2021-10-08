@@ -5,22 +5,24 @@ class PopupWithForm extends Popup {
     super(selector);
     this._formSubmit = formSubmitCallback;
     this._popupForm = this.popup.querySelector('.popup__main-container');
-    this._inputsArray = Array.from(this._popupForm.querySelectorAll('.popup__form'));
+
   }
 
   //получаем данные из полей ввода
   _getInputValues () {
+    this._inputsArray = Array.from(this._popupForm.querySelectorAll('.popup__form'));
     this._dataSet = {};
     this._inputsArray.forEach(item => {
       this._dataSet[item.name] = item.value;
-      return this._dataSet;
     });
+    return this._dataSet;
   }
 
   //Слушатель на кнопке submit
-  setEventListeners() {
-    super.setEventListeners()
-    this.popup.addEventListeners('submit', (evt) => {
+  setEventListeners () {
+    super.setEventListeners();
+
+    this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._formSubmit(this._getInputValues());
       this.close();
@@ -28,7 +30,7 @@ class PopupWithForm extends Popup {
 
   }
   //перезаписал родительский метод
-  close() {
+  close () {
     this._popupForm.reset();
     super.close();
   }
