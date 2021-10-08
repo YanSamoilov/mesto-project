@@ -53,7 +53,7 @@ class Api {
       .then(this._checkResponse)
   }
 
-//Отправить запрос на постановку лайка
+ //Отправить запрос на постановку лайка
   putLike = (cardId) => {
     return fetch(`${this.serverURL}cards/likes/${cardId}`, {
       method: 'PUT',
@@ -79,7 +79,7 @@ class Api {
     .then(this._checkResponse)
   }
 
-setUserAvatarToServer(data) {
+  setUserAvatarToServer(data) {
   return fetch(`${this.serverURL}users/me/avatar`, {
     method: 'PATCH',
     headers: {
@@ -108,6 +108,23 @@ setUserAvatarToServer(data) {
     })
       .then(this._checkResponse)
   }
+
+  deleteCard (cardId) {
+    return fetch(`${this.serverURL}cards/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: token
+      }
+    })
+      .then((res) => {
+        if(!res.ok) {
+          return Promise.reject(`Ошибка ${res.status}`);
+      }
+    })
+  }
+
+
+
 }
 
 // export {getCardslist, addCard, deleteCard, getUserInfo, patchUserProfile, getInfoArray, putLike, deleteLikeRequest, patchAvatar};

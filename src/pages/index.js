@@ -22,6 +22,7 @@ let userId;
 
 // создаем объект api и он будет везде участвовать по идее.
 const api = new Api(token, serverURL);
+console.log(api)
 // создаем объект User и он будет везде участвовать по идее.
 const user = new User ({name: nameUser, description: activityUser, avatar: avatar});
 //Создаем объект попап для добавления карточки.

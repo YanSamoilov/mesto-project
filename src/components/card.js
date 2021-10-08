@@ -64,6 +64,19 @@ class Card {
     }
   }
 
+  handleDeleteCard() {
+    const cardTarget = this._element;
+
+    this.api.deleteCard(cardTarget._id)
+      .then(() => {
+        cardTarget.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+
   _markLikedCard() {
     const likeElem = this._element.querySelector('.cards__like');
     if(this.likes.some(like => like._id === this.userId)) {
@@ -78,6 +91,10 @@ class Card {
 
     this._element.querySelector('.cards__image').addEventListener('click', () => {
       this.handleCardClick();
+    })
+
+    this._element.querySelector('.cards__button-bin').addEventListener('click', () => {
+      this.handleDeleteCard();
     })
   }
 }
