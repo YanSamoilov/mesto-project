@@ -25,7 +25,7 @@ const api = new Api(token, serverURL);
 // создаем объект User и он будет везде участвовать по идее.
 const user = new User ({
   name: '.profile__user-name',
-  description: '.profile__user-action',
+  about: '.profile__user-action',
   avatar:'.profile__avatar'
 });
 //Создаем объект попап для добавления карточки.
