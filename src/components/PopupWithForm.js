@@ -18,12 +18,21 @@ class PopupWithForm extends Popup {
     return this._dataSet;
   }
 
+  renderLoading(isLoading) {
+    if(isLoading) {
+      this._popupForm.querySelector('.popup__button-save').textContent = 'Сохранение...';
+    } else {
+      this._popupForm.querySelector('.popup__button-save').textContent = 'Сохранить';
+    }
+  }
+
   //Слушатель на кнопке submit
   setEventListeners () {
     super.setEventListeners();
 
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      this.renderLoading();
       this._formSubmit(this._getInputValues());
       this.close();
     })

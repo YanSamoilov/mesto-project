@@ -6,7 +6,7 @@ import {hidePreloader} from '../components/util.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 import { userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
-  nameUser, activityUser, nameForInput,activityForInput, avatar, changeAvatar,userEditPopupTest,
+   nameForInput,activityForInput, changeAvatar,userEditPopupTest,
   changeAvatarPopupTest, buttonAddCard
 } from '../utils/constants.js';
 
@@ -18,12 +18,16 @@ import {
 import PopupWithForm from '../components/PopupWithForm';
 import User from '../components/UserInfo.js';
 
-let userId;
+let userId = 0;
 
 // создаем объект api и он будет везде участвовать по идее.
 const api = new Api(token, serverURL);
 // создаем объект User и он будет везде участвовать по идее.
-const user = new User ({name: nameUser, description: activityUser, avatar: avatar});
+const user = new User ({
+  name: '.profile__user-name',
+  description: '.profile__user-action',
+  avatar:'.profile__avatar'
+});
 //Создаем объект попап для добавления карточки.
 const popupAddCard = new PopupWithForm('#popup-add-card',
   (dataInputs) => {
@@ -55,7 +59,7 @@ editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
-const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, newData => {
+const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, (newData) => {
   api.setUserAvatarToServer(newData)
   .then((res) => {
     user.setUserAvatar(res)
@@ -64,7 +68,7 @@ const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, newData => {
   .catch((err) => console.log(err))
 })
 
-const popupFormEditProfile = new PopupWithForm(userEditPopupTest, newData => {
+const popupFormEditProfile = new PopupWithForm(userEditPopupTest, (newData) => {
   api.patchUserProfile(newData)
   .then((res) => {
   user.setUserInfo(res)
@@ -103,7 +107,7 @@ api.getInfoArray()                //Получаем стартовые данн
       }
     }, '.cards__list');
     cardList.renderedItems();
-    //user.setUserInfo(userInfo);
+    user.setUserInfo(userInfo);
   })
   .catch((err) => {
     console.log(err);
