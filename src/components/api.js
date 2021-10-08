@@ -113,7 +113,7 @@ class Api {
     return fetch(`${this.serverURL}cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: token
+        authorization: this.token
       }
     })
       .then((res) => {

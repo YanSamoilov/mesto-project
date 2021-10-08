@@ -66,8 +66,8 @@ class Card {
 
   handleDeleteCard() {
     const cardTarget = this._element;
-
-    this.api.deleteCard(cardTarget._id)
+    console.log(cardTarget)
+     this.api.deleteCard(this._id)
       .then(() => {
         cardTarget.remove();
       })
