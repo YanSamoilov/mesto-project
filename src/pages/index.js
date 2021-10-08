@@ -60,13 +60,16 @@ cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
 const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, (newData) => {
-  api.setUserAvatarToServer(newData)
+  console.log(data);
+  api.patchUserAvatarToServer(newData)
   .then((res) => {
+    console.log(res);
     user.setUserAvatar(res)
     changeAvatarPopup.close()
   })
   .catch((err) => console.log(err))
 })
+popupEditAvatar.setEventListeners();
 
 const popupFormEditProfile = new PopupWithForm(userEditPopupTest, (newData) => {
   api.patchUserProfile(newData)
@@ -83,7 +86,7 @@ buttonUserEdit.addEventListener('click', () => {
   const userData = user.getUser();
   editFormValidator.setInitialState();
   nameForInput.value = userData.name;
-  activityForInput.value = userData.description;
+  activityForInput.value = userData.about;
   popupFormEditProfile.open();
 })
 

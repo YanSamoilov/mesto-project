@@ -64,19 +64,22 @@ class Api {
       .then(this._checkResponse)
   }
 
-  patchUserProfile (data) {
+  patchUserProfile (dataUser) {
     return fetch(`${this.serverURL}users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this.token,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({data})
+      body: JSON.stringify({
+        name: dataUser.userName, //из разметки инпутов
+        about: dataUser.userAbout //из разметки инпутов
+      })
     })
     .then(this._checkResponse)
   }
 
-setUserAvatarToServer(data) {
+  patchUserAvatarToServer(data) {
   return fetch(`${this.serverURL}users/me/avatar`, {
     method: 'PATCH',
     headers: {
