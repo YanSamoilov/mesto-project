@@ -53,7 +53,7 @@ class Api {
       .then(this._checkResponse)
   }
 
-//Отправить запрос на постановку лайка
+ //Отправить запрос на постановку лайка
   putLike = (cardId) => {
     return fetch(`${this.serverURL}cards/likes/${cardId}`, {
       method: 'PUT',
@@ -108,6 +108,23 @@ class Api {
     })
       .then(this._checkResponse)
   }
+
+  deleteCard (cardId) {
+    return fetch(`${this.serverURL}cards/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this.token
+      }
+    })
+      .then((res) => {
+        if(!res.ok) {
+          return Promise.reject(`Ошибка ${res.status}`);
+      }
+    })
+  }
+
+
+
 }
 
 // export {getCardslist, addCard, deleteCard, getUserInfo, patchUserProfile, getInfoArray, putLike, deleteLikeRequest, patchAvatar};

@@ -22,6 +22,7 @@ let userId = 0;
 
 // создаем объект api и он будет везде участвовать по идее.
 const api = new Api(token, serverURL);
+console.log(api)
 // создаем объект User и он будет везде участвовать по идее.
 const user = new User ({
   name: '.profile__user-name',
