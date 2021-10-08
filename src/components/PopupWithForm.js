@@ -28,10 +28,8 @@ class PopupWithForm extends Popup {
   //Слушатель на кнопке submit
   setEventListeners () {
     super.setEventListeners();
-
     this._popupForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this.renderLoading(true);
       this._formSubmit(this._getInputValues());
       this.close();
     })

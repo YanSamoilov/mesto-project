@@ -26,7 +26,7 @@ const api = new Api(token, serverURL);
 const user = new User ({
   name: '.profile__user-name',
   about: '.profile__user-action',
-  avatar:'.profile__avatar'
+  avatar:'.profile__avatar',
 });
 //Создаем объект попап для добавления карточки.
 const popupAddCard = new PopupWithForm('#popup-add-card',
@@ -59,24 +59,25 @@ editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 editAvatarValidator.enableValidation();
 
-const popupEditAvatar = new PopupWithForm(changeAvatarPopupTest, (newData) => {
-  console.log(data);
-  api.patchUserAvatarToServer(newData)
+const popupEditAvatar = new PopupWithForm('#popup-change-avatar', (newData) => {
+  popupEditAvatar.renderLoading(true)
+  api.patchUserAvatar(newData)
   .then((res) => {
-    console.log(res);
     user.setUserAvatar(res)
-    changeAvatarPopup.close()
   })
   .catch((err) => console.log(err))
+  .finally(() => popupEditAvatar.renderLoading(false))
 })
 popupEditAvatar.setEventListeners();
 
 const popupFormEditProfile = new PopupWithForm(userEditPopupTest, (newData) => {
+  popupFormEditProfile.renderLoading(true)
   api.patchUserProfile(newData)
   .then((res) => {
   user.setUserInfo(res)
   })
   .catch((err) => console.log(err))
+  .finally(() => popupFormEditProfile.renderLoading(false))
 })
 //Обновляем данные о юзере на сервере
 popupFormEditProfile.setEventListeners()

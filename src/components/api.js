@@ -79,14 +79,16 @@ class Api {
     .then(this._checkResponse)
   }
 
-  patchUserAvatarToServer(data) {
+  patchUserAvatar(data) {
   return fetch(`${this.serverURL}users/me/avatar`, {
     method: 'PATCH',
     headers: {
       authorization: this.token,
       'Content-Type': 'application/json'
     },
-      body: JSON.stringify({data})
+      body: JSON.stringify({
+        avatar: data.userAvatar,
+      })
     })
     .then(this._checkResponse)
   }
