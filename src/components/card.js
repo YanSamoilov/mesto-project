@@ -101,8 +101,8 @@ class Card {
       this.handleCardClick();
     })
 
-    this._element.querySelector('.cards__button-bin').addEventListener('click', () => {
-      this.handleDeleteBtnClick();
+    this._element.querySelector('.cards__button-bin').addEventListener('click', (evt) => {
+      this.handleDeleteBtnClick(evt);
     })
   }
 }

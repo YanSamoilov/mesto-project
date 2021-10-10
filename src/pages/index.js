@@ -37,9 +37,9 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
             const card = new Card(item, userId, api, '#card-template', () => {
               const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
               popupWithImage.open();
-            },() => {
-              const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete');
-              console.log(popupDeleteCard);
+            },(evt) => {
+              const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api, item, evt);
+              popupDeleteCard.open();
             });
             const cardElement = card.generate();
             cardList.addItem(cardElement);
@@ -102,6 +102,9 @@ api.getInfoArray()                //Получаем стартовые данн
         const card = new Card(item, userId, api, '#card-template', () => {
           const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
           popupWithImage.open();
+        }, (evt) => {
+          const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api, item, evt);
+          popupDeleteCard.open();
         });
         const cardElement = card.generate();
         cardList.addItem(cardElement);
