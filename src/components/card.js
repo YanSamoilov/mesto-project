@@ -2,7 +2,7 @@ export {Card}
 import PopupWithImage from './PopupWithImage.js';
 
 class Card {
-  constructor({name, link, likes, owner, _id}, userId, api, selector, handleCardClick) {
+  constructor({name, link, likes, owner, _id}, userId, api, selector, handleCardClick, handleDeleteBtnClick) {
     this.name = name;           //Название карточки
     this.link = link;           //Ссылка на картинку
     this.likes = likes;         //Массив с лайками
@@ -12,6 +12,7 @@ class Card {
     this.api = api;
     this._id = _id;             //Id карточки для лайка
     this.handleCardClick = handleCardClick;
+    this.handleDeleteBtnClick = handleDeleteBtnClick;
   }
 
   //Получить элемент шаблона карточки
@@ -100,8 +101,8 @@ class Card {
       this.handleCardClick();
     })
 
-    this._element.querySelector('.cards__button-bin').addEventListener('click', () => {
-      this.handleDeleteCard();
+    this._element.querySelector('.cards__button-bin').addEventListener('click', (evt) => {
+      this.handleDeleteBtnClick(evt);
     })
   }
 }
