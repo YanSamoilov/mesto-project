@@ -11,9 +11,19 @@ class Section {
     this._container.append(element);
   }
 
+  addSingleItem(element) {
+    this._container.prepend(element);
+  }
+
   renderedItems() {
-    this._renderedItems.forEach(element => {
-      this._renderer(element);
-    });
+    if (this._renderedItems.length > 1) {
+      this._renderedItems.forEach(element => {
+        this._renderer(element);
+      });
+    }
+    else {
+      this._renderer(this._renderedItems);
+    }
+
   }
 }

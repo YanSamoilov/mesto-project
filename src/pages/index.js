@@ -46,9 +46,10 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
               popupDeleteCard.open();
             });
             const cardElement = card.generate();
-            cardList.addItem(cardElement);
+            cardList.addSingleItem(cardElement);
           }
         }, '.cards__list');
+        cardList.renderedItems();
       })
       .catch((err) => {
         console.log(err);
