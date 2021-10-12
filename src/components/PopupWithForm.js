@@ -6,6 +6,7 @@ class PopupWithForm extends Popup {
     this._formSubmit = formSubmitCallback;
     this._popupForm = this.popup.querySelector('.popup__main-container');
     this._inputsArray = Array.from(this._popupForm.querySelectorAll('.popup__form'));
+    this._submitButton = this._popupForm.querySelector('.popup__button-save');
   }
 
   //получаем данные из полей ввода
@@ -19,9 +20,11 @@ class PopupWithForm extends Popup {
 
   renderLoading(isLoading) {
     if(isLoading) {
-      this._popupForm.querySelector('.popup__button-save').textContent = 'Сохранение...';
+      this._submitButton.textContent = 'Сохранение...';
+      this._submitButton.setAttribute("disabled", "disabled");
     } else {
-      this._popupForm.querySelector('.popup__button-save').textContent = 'Сохранить';
+      this._submitButton.textContent = 'Сохранить';
+      this._submitButton.removeAttribute("disabled");
     }
   }
 
