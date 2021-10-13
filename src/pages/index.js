@@ -1,7 +1,7 @@
 import './index.css';
-import {Api} from '../components/Api.js';
-import {Section} from '../components/Section.js';
-import {Card} from '../components/Card.js';
+import Api from '../components/Api.js';
+import Section from '../components/Section.js';
+import Card from '../components/Сard';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import FormValidator from '../components/FormValidator.js';
@@ -13,6 +13,7 @@ import { userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
   serverURL,
   defaultFormConfig,
 } from '../utils/constants.js'
+import {hidePreloader} from '../components/util.js';
 
 let userId = 0;
 

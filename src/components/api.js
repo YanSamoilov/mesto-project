@@ -1,6 +1,5 @@
-export {Api}
 
-class Api {
+export default class Api {
   constructor(token, serverURL) {
     this.token = token;
     this.serverURL = serverURL;
