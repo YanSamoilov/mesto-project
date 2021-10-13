@@ -28,19 +28,21 @@ class PopupWithForm extends Popup {
     }
   }
 
+_handleSubmitForm = (evt) => {
+  evt.preventDefault();
+      this._formSubmit(this._getInputValues());
+      this.close();
+}
+
   //Слушатель на кнопке submit
   setEventListeners () {
     super.setEventListeners();
-    this._popupForm.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._formSubmit(this._getInputValues());
-      this.close();
-    })
-
+    this._popupForm.addEventListener('submit', this._handleSubmitForm)
   }
   //перезаписываем родительский метод
   close () {
     this._popupForm.reset();
+    this._popupForm.removeEventListener('submit', this._handleSubmitForm)
     super.close();
   }
 }

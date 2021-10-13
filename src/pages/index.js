@@ -7,11 +7,19 @@ import PopupDeleteCard from '../components/PopupDeleteCard.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm';
 import User from '../components/UserInfo.js';
-import { userEditPopupForm, cardAddPopup, changeAvatarPopup, buttonUserEdit,
-  nameForInput,activityForInput, changeAvatar,userEditPopupTest, buttonAddCard,
+import {
+  userEditPopupForm,
+  cardAddPopup,
+  changeAvatarPopup,
+  buttonUserEdit,
+  nameForInput,
+  activityForInput,
+  changeAvatar,
+  userEditPopupTest,
+  buttonAddCard,
   token,
   serverURL,
-  defaultFormConfig,
+  defaultFormConfig
 } from '../utils/constants.js'
 import {hidePreloader} from '../components/util.js';
 
@@ -61,7 +69,6 @@ const popupEditAvatar = new PopupWithForm('#popup-change-avatar', (newData) => {
   .catch((err) => console.log(err))
   .finally(() => popupEditAvatar.renderLoading(false))
 })
-popupEditAvatar.setEventListeners();
 
 const popupFormEditProfile = new PopupWithForm(userEditPopupTest, (newData) => {
   popupFormEditProfile.renderLoading(true)
@@ -72,7 +79,6 @@ const popupFormEditProfile = new PopupWithForm(userEditPopupTest, (newData) => {
   .catch((err) => console.log(err))
   .finally(() => popupFormEditProfile.renderLoading(false))
 })
-popupFormEditProfile.setEventListeners()
 
 //Валидируем формы
 const editFormValidator = new FormValidator(defaultFormConfig, userEditPopupForm);
@@ -87,7 +93,6 @@ editAvatarValidator.enableValidation();
 const setUserInput = function(userData) {
     nameForInput.value = userData.name;
     activityForInput.value = userData.about;
-    console.log(userData)
 }
 
 //Открываем popup редактирования профиля
@@ -135,6 +140,3 @@ api.getInfoArray()
   .finally(() => {
     hidePreloader();
   })
-
-
-

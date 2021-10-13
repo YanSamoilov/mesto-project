@@ -28,4 +28,3 @@ export default class User {
     this._avatar.alt = data.name;
   }
 }
-

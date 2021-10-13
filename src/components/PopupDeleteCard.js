@@ -9,12 +9,9 @@ export default class PopupDeleteCard extends Popup {
     this._confirmDeleteBtn = document.querySelector('#button-confirm-delete-card');
   }
 
-  setEventListeners () {
-    super.setEventListeners();
-
-    this._confirmDeleteBtn.addEventListener('click', (evt) => {
-      evt.preventDefault();
-      const cardTarget = this._evt.target.closest('.cards__list-elem');
+  _handleSubmitDelete = (evt) => {
+    evt.preventDefault();
+    const cardTarget = this._evt.target.closest('.cards__list-elem');
         this._api.deleteCard(this._item._id)
         .then(() => {
           cardTarget.remove();
@@ -23,6 +20,15 @@ export default class PopupDeleteCard extends Popup {
         .catch((err) => {
           console.log(err);
         })
-    })
+  }
+
+  setEventListeners () {
+    super.setEventListeners();
+    this._confirmDeleteBtn.addEventListener('click', this._handleSubmitDelete);
+  }
+
+  close () {
+    this._confirmDeleteBtn.removeEventListener('click', this._handleSubmitDelete)
+    super.close();
   }
 }

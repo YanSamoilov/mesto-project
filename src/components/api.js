@@ -121,8 +121,4 @@ export default class Api {
       }
     })
   }
-
-
-
 }
-

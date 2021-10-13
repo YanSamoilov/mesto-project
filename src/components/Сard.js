@@ -67,7 +67,7 @@ export default class Card {
   handleDeleteCard() {
     const cardTarget = this._element;
 
-     this.api.deleteCard(this._id)
+    this.api.deleteCard(this._id)
       .then(() => {
         cardTarget.remove();
       })
@@ -104,4 +104,3 @@ export default class Card {
     })
   }
 }
-
