@@ -1,6 +1,4 @@
 export {Card}
-import PopupWithImage from './PopupWithImage.js';
-
 class Card {
   constructor({name, link, likes, owner, _id}, userId, api, selector, handleCardClick, handleDeleteBtnClick) {
     this.name = name;           //Название карточки
