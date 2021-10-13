@@ -17,7 +17,7 @@ class PopupWithForm extends Popup {
     });
     return this._dataSet;
   }
-
+  // UX
   renderLoading(isLoading) {
     if(isLoading) {
       this._submitButton.textContent = 'Сохранение...';
@@ -38,7 +38,7 @@ class PopupWithForm extends Popup {
     })
 
   }
-  //перезаписал родительский метод
+  //перезаписываем родительский метод
   close () {
     this._popupForm.reset();
     super.close();

@@ -5,11 +5,11 @@ export default class User {
     this._avatar = document.querySelector(dataUser.avatar);
   }
   //Инициализация значений данных о юзере для предзаполнения полей данных
-  getUser(){
-    return {
-      name: this._name.textContent,
-      about: this._about.textContent
-    }
+  getUserInfo(fetchRequest, callback){
+    fetchRequest()
+    .then(res => {
+      callback(res)
+    })
   }
 
   getUserAvatar() {
