@@ -38,6 +38,15 @@ const user = new User({
 // Объект увеличенного изображения.
 const popupWithImage = new PopupWithImage('#popup-view-image');
 
+//Объект Section.
+const cardList = new Section({
+  renderer: (item) => {
+    const card = createCard(item);
+    const cardElement = card.generate();
+    cardList.addItem(cardElement);
+  }
+}, '.cards__list');
+
 // Создать карточку.
 const createCard = (dataCard) => {
   const card = new Card(dataCard, userId, api, '#card-template',
@@ -56,15 +65,7 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
   (dataInputs) => {
     api.addCard(dataInputs)
       .then((data) => {
-        const cardList = new Section({
-          items: data,
-          renderer: (item) => {
-            const card = createCard(item);
-            const cardElement = card.generate();
-            cardList.addSingleItem(cardElement);
-          }
-        }, '.cards__list');
-        cardList.renderedItems();
+        cardList.renderedItems(data);
       })
       .catch((err) => {
         console.log(err);
@@ -128,15 +129,7 @@ buttonAddCard.addEventListener('click', () => {
 api.getInfoArray()
   .then(([userInfo, cards]) => {
     userId = userInfo._id;
-    const cardList = new Section({
-      items: cards,
-      renderer: (item) => {
-        const card = createCard(item);
-        const cardElement = card.generate();
-        cardList.addItem(cardElement);
-      }
-    }, '.cards__list');
-    cardList.renderedItems();
+    cardList.renderedItems(cards);
     user.setUserInfo(userInfo);
   })
   .catch((err) => {
