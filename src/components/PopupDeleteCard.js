@@ -1,13 +1,21 @@
 import Popup from './Popup.js';
 
 export default class PopupDeleteCard extends Popup {
-  constructor(selector, api, item, evt) {
+  constructor(selector, api) {
     super(selector);
     this._api = api;
-    this._item = item;
-    this._evt = evt;
     this._confirmDeleteBtn = document.querySelector('#button-confirm-delete-card');
   }
+
+
+  open(item, evt) {
+    this._item = item;
+    this._evt = evt;
+
+    super.open();
+  }
+
+
 
   setEventListeners () {
     super.setEventListeners();

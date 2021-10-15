@@ -25,10 +25,13 @@ const user = new User ({
   about: '.profile__user-action',
   avatar:'.profile__avatar',
 });
+const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api)
+
 
 //Создаем объект попап для добавления карточки.
 const popupAddCard = new PopupWithForm('#popup-add-card',
   (dataInputs) => {
+    popupAddCard.renderLoading(true)
     api.addCard(dataInputs)
       .then((data) => {
         const cardList = new Section ({
@@ -38,8 +41,7 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
               const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
               popupWithImage.open();
             },(evt) => {
-              const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api, item, evt);
-              popupDeleteCard.open();
+              popupDeleteCard.open(item, evt);
             });
             const cardElement = card.generate();
             cardList.addSingleItem(cardElement);
@@ -50,6 +52,7 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => popupAddCard.renderLoading(false))
 })
 
 const popupEditAvatar = new PopupWithForm('#popup-change-avatar', (newData) => {
@@ -119,8 +122,7 @@ api.getInfoArray()
           const popupWithImage = new PopupWithImage('#popup-view-image', item.link, item.name);
           popupWithImage.open();
         }, (evt) => {
-          const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api, item, evt);
-          popupDeleteCard.open();
+          popupDeleteCard.open(item, evt);
         });
         const cardElement = card.generate();
         cardList.addItem(cardElement);
