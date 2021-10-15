@@ -37,7 +37,7 @@ const user = new User({
 
 // Объект увеличенного изображения.
 const popupWithImage = new PopupWithImage('#popup-view-image');
-// Объект попапа удаления.
+// Объект попапа удаления карточки.
 const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete');
 
 

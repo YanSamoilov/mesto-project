@@ -10,6 +10,7 @@ export default class User {
     .then(res => {
       callback(res)
     })
+    .catch((err) => console.log(err))
   }
 
   getUserAvatar() {
