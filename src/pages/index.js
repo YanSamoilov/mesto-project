@@ -37,9 +37,10 @@ const user = new User({
 
 // Объект увеличенного изображения.
 const popupWithImage = new PopupWithImage('#popup-view-image');
+popupWithImage.setEventListeners()
 // Объект попапа удаления карточки.
 const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete');
-
+popupDeleteCard.setEventListeners();
 
 //Объект Section.
 const cardList = new Section({
@@ -69,32 +70,38 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
     api.addCard(dataInputs)
       .then((data) => {
         cardList.renderedItems(data);
+        popupAddCard.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => popupAddCard.renderLoading(false));
   })
+  popupAddCard.setEventListeners();
 
 const popupEditAvatar = new PopupWithForm('#popup-change-avatar', (newData) => {
   popupEditAvatar.renderLoading(true);
   api.patchUserAvatar(newData)
     .then((res) => {
       user.setUserAvatar(res)
+      popupEditAvatar.close()
     })
     .catch((err) => console.log(err))
     .finally(() => popupEditAvatar.renderLoading(false))
 })
+popupEditAvatar.setEventListeners()
 
 const popupFormEditProfile = new PopupWithForm(userEditPopupTest, (newData) => {
   popupFormEditProfile.renderLoading(true)
   api.patchUserProfile(newData)
     .then((res) => {
       user.setUserInfo(res)
+      popupFormEditProfile.close()
     })
     .catch((err) => console.log(err))
     .finally(() => popupFormEditProfile.renderLoading(false))
 })
+popupFormEditProfile.setEventListeners();
 
 //Валидируем формы
 const editFormValidator = new FormValidator(defaultFormConfig, userEditPopupForm);
