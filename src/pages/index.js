@@ -37,6 +37,9 @@ const user = new User({
 
 // Объект увеличенного изображения.
 const popupWithImage = new PopupWithImage('#popup-view-image');
+// Объект попапа удаления.
+const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete');
+
 
 //Объект Section.
 const cardList = new Section({
@@ -54,8 +57,7 @@ const createCard = (dataCard) => {
       popupWithImage.open(dataCard);
     },
     (evt) => {
-      const popupDeleteCard = new PopupDeleteCard('#popup-confirm-delete', api, dataCard, evt);
-      popupDeleteCard.open();
+      popupDeleteCard.open(api, dataCard, evt);
     });
   return card;
 }
@@ -63,6 +65,7 @@ const createCard = (dataCard) => {
 //Создаем объект попап для добавления карточки.
 const popupAddCard = new PopupWithForm('#popup-add-card',
   (dataInputs) => {
+    popupAddCard.renderLoading(true);
     api.addCard(dataInputs)
       .then((data) => {
         cardList.renderedItems(data);
@@ -70,10 +73,11 @@ const popupAddCard = new PopupWithForm('#popup-add-card',
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => popupAddCard.renderLoading(false));
   })
 
 const popupEditAvatar = new PopupWithForm('#popup-change-avatar', (newData) => {
-  popupEditAvatar.renderLoading(true)
+  popupEditAvatar.renderLoading(true);
   api.patchUserAvatar(newData)
     .then((res) => {
       user.setUserAvatar(res)
