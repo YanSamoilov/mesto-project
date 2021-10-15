@@ -1,15 +1,11 @@
-// export {toggleCardsBin, addButtonBinCard, markLikedCard, addLike, deleteLike, setButtonSubmitCondition, hidePreloader, confirmDeleteCardPopup, cardTarget};
-// import {putLike, deleteLikeRequest} from './Api.js';
-// import { openPopup } from './modal.js';
-
-export {toggleCardsBin, addButtonBinCard, markLikedCard, addLike, deleteLike, setButtonSubmitCondition, hidePreloader, confirmDeleteCardPopup, cardTarget};
+export { toggleCardsBin, addButtonBinCard, markLikedCard, addLike, deleteLike, setButtonSubmitCondition, hidePreloader, confirmDeleteCardPopup, cardTarget };
 
 const confirmDeleteCardPopup = document.querySelector('#popup-confirm-delete');
 let cardTarget;
 
 //Отображение кнопки удаления карточки в завимости от того кто ее создал
 const toggleCardsBin = (userId, cardOwnerId, cardElement) => {
-  if(userId === cardOwnerId) {
+  if (userId === cardOwnerId) {
     addButtonBinCard(cardElement);
   }
   else {
@@ -43,7 +39,7 @@ const inactivateButtonBinCard = (cardElement) => {
 
 //Закрасить собственный лайк при загрузке карточки
 const markLikedCard = (card, likeElem, userId) => {
-  if(card.likes.some(like => like._id === userId)) {
+  if (card.likes.some(like => like._id === userId)) {
     likeElem.classList.add('cards__like_active');
   }
 }
@@ -51,23 +47,23 @@ const markLikedCard = (card, likeElem, userId) => {
 //Поставить лайк на карточке
 const addLike = (cardId, likeCard, cardLikeCount) => {
   putLike(cardId)
-      .then((data) => {
-        likeCard.classList.add('cards__like_active');
-        cardLikeCount.textContent = data.likes.length;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    .then((data) => {
+      likeCard.classList.add('cards__like_active');
+      cardLikeCount.textContent = data.likes.length;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 }
 
 //Удалить свой лайк
 const deleteLike = (cardId, likeCard, cardLikeCount) => {
   deleteLikeRequest(cardId)
-  .then((data) => {
-    likeCard.classList.remove('cards__like_active');
-    cardLikeCount.textContent = data.likes.length;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+    .then((data) => {
+      likeCard.classList.remove('cards__like_active');
+      cardLikeCount.textContent = data.likes.length;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 }

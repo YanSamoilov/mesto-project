@@ -7,7 +7,7 @@ export default class Api {
 
   //Обработка ответа сервера
   _checkResponse = (res) => {
-    if(res.ok) {
+    if (res.ok) {
       return res.json();
     }
     else {
@@ -52,7 +52,7 @@ export default class Api {
       .then(this._checkResponse)
   }
 
- //Отправить запрос на постановку лайка
+  //Отправить запрос на постановку лайка
   putLike = (cardId) => {
     return fetch(`${this.serverURL}cards/likes/${cardId}`, {
       method: 'PUT',
@@ -63,7 +63,7 @@ export default class Api {
       .then(this._checkResponse)
   }
 
-  patchUserProfile (dataUser) {
+  patchUserProfile(dataUser) {
     return fetch(`${this.serverURL}users/me`, {
       method: 'PATCH',
       headers: {
@@ -75,21 +75,21 @@ export default class Api {
         about: dataUser.userAbout //из разметки инпутов
       })
     })
-    .then(this._checkResponse)
+      .then(this._checkResponse)
   }
 
   patchUserAvatar(data) {
-  return fetch(`${this.serverURL}users/me/avatar`, {
-    method: 'PATCH',
-    headers: {
-      authorization: this.token,
-      'Content-Type': 'application/json'
-    },
+    return fetch(`${this.serverURL}users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this.token,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         avatar: data.userAvatar,
       })
     })
-    .then(this._checkResponse)
+      .then(this._checkResponse)
   }
 
   //Добавление новой карточки
@@ -99,7 +99,7 @@ export default class Api {
       headers: {
         authorization: this.token,
         'Content-Type': 'application/json'
-        },
+      },
       body: JSON.stringify({
         name: data["card-title"],
         link: data["image-url"]
@@ -108,7 +108,7 @@ export default class Api {
       .then(this._checkResponse)
   }
 
-  deleteCard (cardId) {
+  deleteCard(cardId) {
     return fetch(`${this.serverURL}cards/${cardId}`, {
       method: 'DELETE',
       headers: {
@@ -116,9 +116,9 @@ export default class Api {
       }
     })
       .then((res) => {
-        if(!res.ok) {
+        if (!res.ok) {
           return Promise.reject(`Ошибка ${res.status}`);
-      }
-    })
+        }
+      })
   }
 }

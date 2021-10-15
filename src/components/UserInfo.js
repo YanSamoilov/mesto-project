@@ -5,12 +5,12 @@ export default class User {
     this._avatar = document.querySelector(dataUser.avatar);
   }
   //Инициализация значений данных о юзере для предзаполнения полей данных
-  getUserInfo(fetchRequest, callback){
+  getUserInfo(fetchRequest, callback) {
     fetchRequest()
-    .then(res => {
-      callback(res)
-    })
-    .catch((err) => console.log(err))
+      .then(res => {
+        callback(res)
+      })
+      .catch((err) => console.log(err))
   }
 
   getUserAvatar() {

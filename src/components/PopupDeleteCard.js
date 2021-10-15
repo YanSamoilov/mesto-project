@@ -19,22 +19,22 @@ export default class PopupDeleteCard extends Popup {
     evt.preventDefault();
     this._renderLoading(true);
     const cardTarget = this._evt.target.closest('.cards__list-elem');
-        this._api.deleteCard(this._item._id)
-        .then(() => {
-          cardTarget.remove();
-          this.close();
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          this._renderLoading(false);
-        });
+    this._api.deleteCard(this._item._id)
+      .then(() => {
+        cardTarget.remove();
+        this.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        this._renderLoading(false);
+      });
   }
 
 
   _renderLoading(isLoading) {
-    if(isLoading) {
+    if (isLoading) {
       this._confirmDeleteBtn.textContent = 'Подождите...';
       this._confirmDeleteBtn.setAttribute("disabled", "disabled");
     } else {
@@ -45,13 +45,12 @@ export default class PopupDeleteCard extends Popup {
 
 
 
-  setEventListeners () {
+  setEventListeners() {
     super.setEventListeners();
     this._confirmDeleteBtn.addEventListener('click', this._handleSubmitDelete);
   }
 
-  close () {
-    this._confirmDeleteBtn.removeEventListener('click', this._handleSubmitDelete)
+  close() {
     super.close();
   }
 }

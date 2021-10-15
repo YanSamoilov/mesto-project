@@ -1,6 +1,6 @@
 
 export default class Card {
-  constructor({name, link, likes, owner, _id}, userId, api, selector, handleCardClick, handleDeleteBtnClick) {
+  constructor({ name, link, likes, owner, _id }, userId, api, selector, handleCardClick, handleDeleteBtnClick) {
     this.name = name;           //Название карточки
     this.link = link;           //Ссылка на картинку
     this.likes = likes;         //Массив с лайками
@@ -42,7 +42,7 @@ export default class Card {
     const likeImage = this._element.querySelector('.cards__like');
     const likeCount = this._element.querySelector('.cards__like-num');
 
-    if(!likeImage.classList.contains('cards__like_active')) {
+    if (!likeImage.classList.contains('cards__like_active')) {
       this.api.putLike(this._id)
         .then((data) => {
           likeCount.textContent = data.likes.length;
@@ -77,15 +77,15 @@ export default class Card {
   }
 
 
-  _toggleCardsBin () {
-    if(this.userId !== this.owner) {
+  _toggleCardsBin() {
+    if (this.userId !== this.owner) {
       this._element.querySelector('.cards__button-bin').classList.add('cards__button-bin_inactive');
     }
   }
 
   _markLikedCard() {
     const likeElem = this._element.querySelector('.cards__like');
-    if(this.likes.some(like => like._id === this.userId)) {
+    if (this.likes.some(like => like._id === this.userId)) {
       likeElem.classList.add('cards__like_active');
     }
   }
