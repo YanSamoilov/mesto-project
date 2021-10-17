@@ -64,19 +64,6 @@ export default class Card {
     }
   }
 
-  handleDeleteCard() {
-    const cardTarget = this._element;
-
-    this.api.deleteCard(this._id)
-      .then(() => {
-        cardTarget.remove();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
-
   _toggleCardsBin() {
     if (this.userId !== this.owner) {
       this._element.querySelector('.cards__button-bin').classList.add('cards__button-bin_inactive');

@@ -32,7 +32,6 @@ export default class PopupDeleteCard extends Popup {
       });
   }
 
-
   _renderLoading(isLoading) {
     if (isLoading) {
       this._confirmDeleteBtn.textContent = 'Подождите...';
@@ -43,14 +42,8 @@ export default class PopupDeleteCard extends Popup {
     }
   }
 
-
-
   setEventListeners() {
     super.setEventListeners();
     this._confirmDeleteBtn.addEventListener('click', this._handleSubmitDelete);
-  }
-
-  close() {
-    super.close();
   }
 }
