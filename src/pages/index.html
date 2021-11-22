@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <title>Mesto</title>
   <link rel="shortcut icon" href="./images/earth.ico" type="image/x-icon">
 </head>
+
 <body class="page">
   <header class="header page__section">
     <a href="#" class="header__logo"></a>
@@ -27,7 +29,7 @@
         </div>
         <p class="profile__user-action"></p>
       </div>
-        <button type="button" class="profile__add-card" aria-label="Добавить место в коллекцию."></button>
+      <button type="button" class="profile__add-card" aria-label="Добавить место в коллекцию."></button>
     </section>
     <section class="cards page__section">
       <ul class="cards__list">
@@ -35,70 +37,72 @@
     </section>
   </main>
   <footer class="footer page__section">
-    <p class="footer__author">&copy;2021.Команда: Ян, Глен, Иван</p>
+    <p class="footer__author">&copy;2021.Ян Самойлов</p>
   </footer>
   <div class="popup" id="popup-user-editor">
     <form class="popup__main-container" id="popup-user-edit-container" method="POST" name="personal-data" novalidate>
-      <button type="button" class="popup__close" id="user-editor-close" aria-label="Закрыть окно изменения данных пользователя."></button>
+      <button type="button" class="popup__close" id="user-editor-close"
+        aria-label="Закрыть окно изменения данных пользователя."></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <!--<fieldset class="popup__edit-container">-->
-        <label for="user-name" class="popup__label">
-          <input type="text" name="userName" placeholder="Имя" class="popup__form" id="user-name" minlength="2"
+      <label for="user-name" class="popup__label">
+        <input type="text" name="userName" placeholder="Имя" class="popup__form" id="user-name" minlength="2"
           maxlength="40" required>
-          <span class="popup__error user-name-error"></span>
-        </label>
-        <label for="user-activity" class="popup__label">
-          <input type="text" name="userAbout" placeholder="О себе" class="popup__form" id="user-activity"
-          minlength="2" maxlength="200" required>
-          <span class="popup__error user-activity-error"></span>
-        </label>
-        <button type="submit" class="popup__button-save" aria-label="Сохранить изменение данных пользователя.">Сохранить</button>
-      <!--</fieldset>-->
+        <span class="popup__error user-name-error"></span>
+      </label>
+      <label for="user-activity" class="popup__label">
+        <input type="text" name="userAbout" placeholder="О себе" class="popup__form" id="user-activity" minlength="2"
+          maxlength="200" required>
+        <span class="popup__error user-activity-error"></span>
+      </label>
+      <button type="submit" class="popup__button-save"
+        aria-label="Сохранить изменение данных пользователя.">Сохранить</button>
     </form>
   </div>
   <div class="popup" id="popup-add-card">
     <form class="popup__main-container" id="popup-add-card-container" method="POST" name="card" novalidate>
-      <button type="button" class="popup__close" id="add-card-close" aria-label="Закрыть окно добавления карточки."></button>
+      <button type="button" class="popup__close" id="add-card-close"
+        aria-label="Закрыть окно добавления карточки."></button>
       <h3 class="popup__title">Новое место</h3>
-      <!--<fieldset class="popup__edit-container">-->
-        <label for="card-title" class="popup__label">
-          <input type="text" name="card-title" placeholder="Название" class="popup__form" id="card-title" minlength="2"
+      <label for="card-title" class="popup__label">
+        <input type="text" name="card-title" placeholder="Название" class="popup__form" id="card-title" minlength="2"
           maxlength="30" required>
-          <span class="popup__error card-title-error"></span>
-        </label>
-        <label for="card-url" class="popup__label">
-          <input type="url" name="image-url" placeholder="Ссылка на картинку" class="popup__form" id="card-url" required>
-          <span class="popup__error card-url-error"></span>
-        </label>
-        <button type="submit" class="popup__button-save" aria-label="Сохранить новую карточку.">Сохранить</button>
-      <!--</fieldset>-->
+        <span class="popup__error card-title-error"></span>
+      </label>
+      <label for="card-url" class="popup__label">
+        <input type="url" name="image-url" placeholder="Ссылка на картинку" class="popup__form" id="card-url" required>
+        <span class="popup__error card-url-error"></span>
+      </label>
+      <button type="submit" class="popup__button-save" aria-label="Сохранить новую карточку.">Сохранить</button>
     </form>
   </div>
   <div class="popup" id="popup-change-avatar">
     <form action="POST" class="popup__main-container" id="popup-change-avatar-container" name="avatar" novalidate>
-      <button type="button" class="popup__close" id="change-avatar-close" aria-label="Закрыть окно смены аватара."></button>
+      <button type="button" class="popup__close" id="change-avatar-close"
+        aria-label="Закрыть окно смены аватара."></button>
       <h3 class="popup__title">Обновить аватар</h3>
-      <!--<fieldset class="popup__edit-container">-->
-        <label for="avatar-url" class="popup__label">
-          <input type="url" name="userAvatar" placeholder="Ссылка на картинку" class="popup__form" id="avatar-url" required>
-          <span class="popup__error avatar-url-error"></span>
-        </label>
-        <button type="submit" class="popup__button-save" aria-label="Обновить аватар.">Сохранить</button>
-      <!--</fieldset>-->
+      <label for="avatar-url" class="popup__label">
+        <input type="url" name="userAvatar" placeholder="Ссылка на картинку" class="popup__form" id="avatar-url"
+          required>
+        <span class="popup__error avatar-url-error"></span>
+      </label>
+      <button type="submit" class="popup__button-save" aria-label="Обновить аватар.">Сохранить</button>
     </form>
   </div>
   <div class="popup" id="popup-view-image">
     <figure class="popup__figure-image">
       <img src="" alt="" class="popup__larger-image">
       <figcaption class="popup__figcaption"></figcaption>
-      <button type="button" class="popup__close" id="close-larger-image" aria-label="Закрыть окно просмотра изображения карточки."></button>
+      <button type="button" class="popup__close" id="close-larger-image"
+        aria-label="Закрыть окно просмотра изображения карточки."></button>
     </figure>
   </div>
   <div class="popup" id="popup-confirm-delete">
     <div class="popup__main-container">
-      <button type="button" class="popup__close" id="confirm-delete-close" aria-label="Закрыть окно подтверждения удаления карточки."></button>
+      <button type="button" class="popup__close" id="confirm-delete-close"
+        aria-label="Закрыть окно подтверждения удаления карточки."></button>
       <h3 class="popup__title popup__title_without-input">Вы уверены?</h3>
-      <button type="submit" class="popup__button-save popup__button-save_without-input" id="button-confirm-delete-card" aria-label="Подтвердить удаление карточки.">Да</button>
+      <button type="submit" class="popup__button-save popup__button-save_without-input" id="button-confirm-delete-card"
+        aria-label="Подтвердить удаление карточки.">Да</button>
     </div>
   </div>
   <template id="card-template">
@@ -115,4 +119,5 @@
     </li>
   </template>
 </body>
+
 </html>
